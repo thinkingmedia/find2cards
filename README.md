@@ -1,4 +1,4 @@
-# Memory
+# Memory [![Build Status](https://travis-ci.org/thinkingmedia/memory.svg)](https://travis-ci.org/thinkingmedia/memory)
 
 # Install Guide
 
@@ -70,7 +70,6 @@ The game uses a MySQL database to track game history, match making and users. To
 
     $ cd /var/memory/sql
     $ ./create.sh <password>
-    
-The above will only create the MySQL database for `memory`. You will need to import the data to finish.
-
     $ ./import.sh
+
+> Note: You don't have to recreate the database later. If the SQL files are updated just run `./import.sh` again, but your old **data** will be lost.
