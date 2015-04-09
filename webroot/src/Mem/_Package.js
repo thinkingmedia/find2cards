@@ -1,2 +1,1 @@
-goog.provide(".Mem");
-goog.require("");
+goog.provide("Mem");

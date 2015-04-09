@@ -4,7 +4,11 @@ $scripts = [
 	'/bower/angular-bootstrap/ui-bootstrap.js',
 	'/bower/angular-bootstrap/ui-bootstrap-tpls.js',
 	'/bower/jquery/dist/jquery.js',
-	'/bower/lodash/lodash.js'
+	'/bower/lodash/lodash.js',
+	'/bower/closure-library/closure/goog/base.js',
+	'/js/deps.js',
+	'/src/Mem/_Package.js',
+	'/src/Mem/_All.js'
 ];
 ?>
 <!DOCTYPE html>

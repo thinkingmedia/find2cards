@@ -7,8 +7,10 @@
 
     <includepath classpath="vendor\thinkingmedia\phing\src" />
 
-    <taskdef name="deps" classname="GemsPhing.Closure.DepsTask"/>
     <taskdef name="scaffold-closure" classname="GemsPhing.Scaffold.ScaffoldClosureTask"/>
+    <taskdef name="scaffold-jasmine" classname="GemsPhing.Scaffold.ScaffoldJasmineTask"/>
+    <taskdef name="scaffold-sass" classname="GemsPhing.Scaffold.ScaffoldSASSTask"/>
+    <taskdef name="deps" classname="GemsPhing.Closure.DepsTask"/>
 
     <target name="build">
         <scaffold-closure root="./webroot/src">
@@ -17,7 +19,19 @@
             </fileset>
         </scaffold-closure>
 
-        <deps output="webroot/js/deps.js" library="./webroot/closure-library" prefix="../../../src/Mem">
+        <scaffold-jasmine root="./webroot/src">
+            <fileset dir="./webroot/src/Mem">
+                <exclude name=".sass-cache/**"/>
+            </fileset>
+        </scaffold-jasmine>
+
+        <scaffold-sass root="./webroot/src">
+            <fileset dir="./webroot/src/Mem">
+                <exclude name=".sass-cache/**"/>
+            </fileset>
+        </scaffold-sass>
+
+        <deps output="webroot/js/deps.js" library="./webroot/bower/closure-library" prefix="../../../src/Mem">
             <fileset dir="./webroot/src/Mem">
                 <exclude name=".sass-cache/**"/>
             </fileset>
