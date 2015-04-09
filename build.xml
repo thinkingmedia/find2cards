@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+
+<project name="App" default="build">
+    <property name="app" value="cgtag"/>
+
+    <php expression="include('vendor/autoload.php')"/>
+
+    <includepath classpath="vendor\thinkingmedia\phing\src" />
+
+    <taskdef name="deps" classname="GemsPhing.Closure.DepsTask"/>
+    <taskdef name="scaffold-closure" classname="GemsPhing.Scaffold.ScaffoldClosureTask"/>
+
+    <target name="build">
+        <scaffold-closure root="./webroot/src">
+            <fileset dir="./webroot/src/Mem">
+                <exclude name=".sass-cache/**"/>
+            </fileset>
+        </scaffold-closure>
+
+        <deps output="webroot/js/deps.js" library="./webroot/closure-library" prefix="../../../src/Mem">
+            <fileset dir="./webroot/src/Mem">
+                <exclude name=".sass-cache/**"/>
+            </fileset>
+        </deps>
+    </target>
+
+</project>
