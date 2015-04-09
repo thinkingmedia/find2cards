@@ -4,3 +4,4 @@
 /tmp/*
 /logs/*
 /.idea
+/.sass-cache

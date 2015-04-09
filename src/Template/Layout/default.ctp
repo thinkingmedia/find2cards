@@ -8,7 +8,7 @@ $scripts = [
 ];
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<?= $this->Html->charset() ?>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,22 +17,55 @@ $scripts = [
 	</title>
 	<?= $this->Html->meta('icon') ?>
 
-	<?= $this->Html->css('base.css') ?>
-	<?= $this->Html->css('/bower/bootstrap/dist/css/bootstrap.css') ?>
+	<?php // $this->Html->css('base.css') ?>
 	<?php //$this->Html->css('cake.css') ?>
+
+	<?= $this->Html->css('/bower/normalize.css/normalize.css') ?>
+	<?= $this->Html->css('/bower/bootstrap/dist/css/bootstrap.css') ?>
+	<?= $this->Html->css('/css/main.css') ?>
 
 	<?= $this->fetch('meta') ?>
 	<?= $this->fetch('css') ?>
 </head>
 <body>
-<?= $this->Flash->render() ?>
-<?= $this->fetch('content') ?>
-<?php
-	foreach($scripts as $script)
-	{
-		echo $this->Html->script($script);
-	}
-?>
-<?= $this->fetch('script') ?>
+
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Project name</a>
+			</div>
+			<div id="navbar" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">Home</a></li>
+					<li><a href="#about">About</a></li>
+					<li><a href="#contact">Contact</a></li>
+				</ul>
+			</div><!--/.nav-collapse -->
+		</div>
+	</nav>
+
+	<?= $this->Flash->render() ?>
+
+	<div class="container">
+		<div class="starter-template">
+			<h1>Bootstrap starter template</h1>
+			<p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+		</div>
+		<?= $this->fetch('content') ?>
+	</div>
+
+	<?php
+		foreach($scripts as $script)
+		{
+			echo $this->Html->script($script);
+		}
+	?>
+	<?= $this->fetch('script') ?>
 </body>
 </html>

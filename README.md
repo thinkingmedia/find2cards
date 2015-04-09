@@ -86,8 +86,6 @@ The game uses a MySQL database to track game history, match making and users. To
 
 ## Install Development Tools
 
-This project uses a wide range of popular web development tools. Each of these have dependencies that must be installed before they can be used. The installing of these tools is beyond the scope of this guide.
-
 You will need the following to make changes to this project:
 
 - `composer` for PHP components.
@@ -111,6 +109,10 @@ Now install the components for the game.
     
 ## Bower Components
 
-All the front-end libraries required by this project are installed via `bower`.
+To use `bower` you will need to install NodeJS and NPM.
 
+    $ curl -sL https://deb.nodesource.com/setup | sudo bash -
+    $ sudo apt-get install -y nodejs
+    $ sudo npm install -g bower
+    $ cd /var/memory
     $ bower install
