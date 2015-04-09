@@ -1,4 +1,5 @@
 /vendor/*
+/webroot/bower/*
 /config/app.php
 /tmp/*
 /logs/*

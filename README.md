@@ -1,4 +1,8 @@
-# Memory [![Build Status](https://travis-ci.org/thinkingmedia/memory.svg)](https://travis-ci.org/thinkingmedia/memory)
+# Memory [![Build Status](https://travis-ci.org/thinkingmedia/memory.svg)](https://travis-ci.org/thinkingmedia/memory) [![Code Climate](https://codeclimate.com/github/thinkingmedia/memory/badges/gpa.svg)](https://codeclimate.com/github/thinkingmedia/memory)
+
+# Unit Tests
+
+[![Test Coverage](https://codeclimate.com/github/thinkingmedia/memory/badges/coverage.svg)](https://codeclimate.com/github/thinkingmedia/memory)
 
 # Install Guide
 
@@ -73,3 +77,15 @@ The game uses a MySQL database to track game history, match making and users. To
     $ ./import.sh
 
 > Note: You don't have to recreate the database later. If the SQL files are updated just run `./import.sh` again, but your old **data** will be lost.
+
+# Development Setup
+
+This project uses a wide range of popular web development tools. Each of these have dependencies that must be installed before they can be used. The installing of these tools is beyond the scope of this guide.
+
+You will need the following to make changes to this project:
+
+- `composer` for PHP components.
+- `npm` for NodeJS modules.
+- `bower` for front-end libraries.
+- `grunt` for building front-end components.
+- `SASS` for front-end CSS libraries.
