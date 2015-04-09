@@ -20,6 +20,12 @@ Enable the `rewrite_mod` for Apache.
     $ cd /etc/apache2/mods-enabled
     $ ln -s ../mods-available/rewrite.load rewrite.load
     
+## Configure PHP
+    
+PHP must have `ext-intl` installed for this source code to work.
+
+    $ sudo apt-get install php5-intl
+    
 ## Configure Apache
 
 Add a new website config for Apache to run the game.
@@ -78,7 +84,7 @@ The game uses a MySQL database to track game history, match making and users. To
 
 > Note: You don't have to recreate the database later. If the SQL files are updated just run `./import.sh` again, but your old **data** will be lost.
 
-# Development Setup
+## Install Development Tools
 
 This project uses a wide range of popular web development tools. Each of these have dependencies that must be installed before they can be used. The installing of these tools is beyond the scope of this guide.
 
@@ -89,3 +95,22 @@ You will need the following to make changes to this project:
 - `bower` for front-end libraries.
 - `grunt` for building front-end components.
 - `SASS` for front-end CSS libraries.
+
+## Composer Components
+
+All the PHP libraries required by this project are installed via `composer`.
+
+Here's a quick way to install `composer`.
+
+    $ sudo curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
+
+Now install the components for the game.
+    
+    $ cd /var/memory
+    $ composer install
+    
+## Bower Components
+
+All the front-end libraries required by this project are installed via `bower`.
+
+    $ bower install
