@@ -7,8 +7,8 @@ $scripts = [
 	'/bower/lodash/lodash.js',
 	'/bower/closure-library/closure/goog/base.js',
 	'/js/deps.js',
-	'/src/Mem/_Package.js',
-	'/src/Mem/_All.js'
+	'/src/gmMem/_Package.js',
+	'/src/gmMem/_All.js'
 ];
 ?>
 <!DOCTYPE html>
@@ -26,7 +26,7 @@ $scripts = [
 
 	<?= $this->Html->css('/bower/normalize.css/normalize.css') ?>
 	<?= $this->Html->css('/bower/bootstrap/dist/css/bootstrap.css') ?>
-	<?= $this->Html->css('/css/main.css') ?>
+	<?= $this->Html->css('/css/styles.css') ?>
 
 	<?= $this->fetch('meta') ?>
 	<?= $this->fetch('css') ?>
@@ -42,7 +42,7 @@ $scripts = [
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#"><?= Cake\Core\Configure::read('Memory.AppName') ?></a>
+				<a class="navbar-brand" href="/"><?= Cake\Core\Configure::read('Memory.AppName') ?></a>
 			</div>
 			<div id="navbar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
@@ -63,7 +63,7 @@ $scripts = [
 	<?php
 		foreach($scripts as $script)
 		{
-			echo $this->Html->script($script);
+			echo $this->Html->script($script,['type'=>'text/javascript']);
 		}
 	?>
 	<?= $this->fetch('script') ?>

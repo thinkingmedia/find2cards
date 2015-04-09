@@ -1,9 +1,16 @@
+.gmSignIn {
+  max-width: 260px;
+  margin: 0 auto; }
+
 /** Import package wide styles here. **/
 body {
-  padding-top: 50px; }
+  padding-top: 60px; }
 
 .starter-template {
   padding: 40px 15px;
   text-align: center; }
+
+.container {
+  max-width: 600px; }
 
 /*# sourceMappingURL=styles.css.map */

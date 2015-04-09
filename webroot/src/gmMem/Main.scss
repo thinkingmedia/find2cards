@@ -1,0 +1,14 @@
+@import "Config";
+
+body {
+  padding-top: 60px;
+}
+
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+
+.container {
+  max-width: $appWidth;
+}

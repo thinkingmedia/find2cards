@@ -13,26 +13,26 @@
     <taskdef name="deps" classname="GemsPhing.Closure.DepsTask"/>
 
     <target name="build">
-        <scaffold-closure root="./webroot/src">
-            <fileset dir="./webroot/src/Mem">
+        <scaffold-closure root="./webroot/src" prefix="gm" parent="gmMem">
+            <fileset dir="./webroot/src/gmMem">
                 <exclude name=".sass-cache/**"/>
             </fileset>
         </scaffold-closure>
 
-        <scaffold-jasmine root="./webroot/src">
-            <fileset dir="./webroot/src/Mem">
+        <scaffold-jasmine root="./webroot/src" prefix="gm" parent="gmMem">
+            <fileset dir="./webroot/src/gmMem">
                 <exclude name=".sass-cache/**"/>
             </fileset>
         </scaffold-jasmine>
 
-        <scaffold-sass root="./webroot/src">
-            <fileset dir="./webroot/src/Mem">
+        <scaffold-sass root="./webroot/src" prefix="gm" parent="gmMem">
+            <fileset dir="./webroot/src/gmMem">
                 <exclude name=".sass-cache/**"/>
             </fileset>
         </scaffold-sass>
 
-        <deps output="webroot/js/deps.js" library="./webroot/bower/closure-library" prefix="../../../src/Mem">
-            <fileset dir="./webroot/src/Mem">
+        <deps output="webroot/js/deps.js" library="./webroot/bower/closure-library" prefix="../../../src/gmMem">
+            <fileset dir="./webroot/src/gmMem">
                 <exclude name=".sass-cache/**"/>
             </fileset>
         </deps>

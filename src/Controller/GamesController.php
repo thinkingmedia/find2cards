@@ -24,6 +24,14 @@ class GamesController extends AppController
 
 	public function start()
 	{
+		if(!empty($this->request->data))
+		{
+			$this->redirect('/games/matching');
+		}
+	}
+
+	public function matching()
+	{
 	}
 
     /**

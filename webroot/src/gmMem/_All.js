@@ -2,6 +2,8 @@
 //* Do not edit. This file will be auto-updated *
 //***********************************************
 
-goog.provide("Mem.All");
-goog.require("Mem");
+goog.provide("gmMem.All");
+goog.require("gmMem");
+
+goog.require("gmMem.gmSignIn");
 
