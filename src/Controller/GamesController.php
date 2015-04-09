@@ -22,6 +22,10 @@ class GamesController extends AppController
         $this->set('_serialize', ['games']);
     }
 
+	public function start()
+	{
+	}
+
     /**
      * View method
      *

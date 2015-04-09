@@ -16,28 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `games`
+-- Table structure for table `users_games`
 --
 
-DROP TABLE IF EXISTS `games`;
+DROP TABLE IF EXISTS `users_games`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `games` (
+CREATE TABLE `users_games` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `match_making` tinyint(1) unsigned NOT NULL DEFAULT '1',
+  `user_id` int(10) unsigned NOT NULL,
+  `game_id` int(10) unsigned NOT NULL,
   `created` datetime NOT NULL,
-  `updated` datetime NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `join_users_idx` (`user_id`),
+  KEY `join_games_idx` (`game_id`),
+  CONSTRAINT `join_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `join_games` FOREIGN KEY (`game_id`) REFERENCES `games` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `games`
+-- Dumping data for table `users_games`
 --
 
-LOCK TABLES `games` WRITE;
-/*!40000 ALTER TABLE `games` DISABLE KEYS */;
-/*!40000 ALTER TABLE `games` ENABLE KEYS */;
+LOCK TABLES `users_games` WRITE;
+/*!40000 ALTER TABLE `users_games` DISABLE KEYS */;
+/*!40000 ALTER TABLE `users_games` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
