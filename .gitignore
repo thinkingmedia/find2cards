@@ -1,8 +1,8 @@
 /vendor/*
 /webroot/bower/*
 /config/app.php
+/config/hybridauth.secret.php
 /tmp/*
 /logs/*
 /.idea
 /.sass-cache
-.idea

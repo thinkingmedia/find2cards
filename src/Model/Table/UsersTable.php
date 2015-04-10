@@ -1,9 +1,6 @@
 <?php
 namespace App\Model\Table;
 
-use App\Model\Entity\User;
-use Cake\ORM\Query;
-use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
@@ -12,11 +9,28 @@ use Cake\Validation\Validator;
  */
 class UsersTable extends Table
 {
+    /**
+     * @param string               $provider Provider name.
+     * @param \Hybrid_User_Profile $profile  The Profile
+     *
+     * @return boolean
+     */
+    public function registration($provider, $profile)
+    {
+        $user = $this->newEntity([
+                                     'name'         => $profile->displayName,
+                                     'provider'     => $provider,
+                                     'provider_uid' => $profile->identifier
+                                 ]);
+
+        return $this->save($user);
+    }
 
     /**
      * Initialize method
      *
      * @param array $config The configuration for the Table.
+     *
      * @return void
      */
     public function initialize(array $config)
@@ -26,9 +40,9 @@ class UsersTable extends Table
         $this->primaryKey('id');
         $this->addBehavior('Timestamp');
         $this->belongsToMany('Games', [
-            'foreignKey' => 'user_id',
+            'foreignKey'       => 'user_id',
             'targetForeignKey' => 'game_id',
-            'joinTable' => 'users_games'
+            'joinTable'        => 'users_games'
         ]);
     }
 
@@ -36,17 +50,15 @@ class UsersTable extends Table
      * Default validation rules.
      *
      * @param \Cake\Validation\Validator $validator Validator instance.
+     *
      * @return \Cake\Validation\Validator
      */
     public function validationDefault(Validator $validator)
     {
-        $validator
-            ->add('id', 'valid', ['rule' => 'numeric'])
-            ->allowEmpty('id', 'create')
-            ->requirePresence('name', 'create')
-            ->notEmpty('name')
-            ->requirePresence('token', 'create')
-            ->notEmpty('token');
+        $validator->add('id', 'valid', ['rule' => 'numeric'])
+                  ->allowEmpty('id', 'create')
+                  ->requirePresence('name', 'create')
+                  ->notEmpty('name');
 
         return $validator;
     }
