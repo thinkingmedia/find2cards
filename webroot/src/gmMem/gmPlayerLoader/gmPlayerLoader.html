@@ -1,0 +1,22 @@
+<div class="gmPlayerLoader">
+
+    <div class="gmPlayerLoader-Icon">
+        <span class="fa-stack">
+            <i class="fa fa-circle fa-stack-2x fa-fw"></i>
+            <i class="fa fa-user fa-stack-1x fa-inverse fa-fw"></i>
+        </span>
+    </div>
+
+    <div class="gmPlayerLoader-Container">
+        <div ng-if="model.state === ''">
+            <h1>{{model.username}}</h1>
+        </div>
+        <div ng-if="model.state !== ''" class="progress">
+            <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" style="width: 60%"></div>
+        </div>
+    </div>
+
+    <div class="gmPlayerLoader-Ready">
+        <span class="fa fa-square-o"></span>
+    </div>
+</div>

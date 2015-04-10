@@ -12,10 +12,11 @@ $scripts = [
 ];
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="gmMem">
 <head>
 	<?= $this->Html->charset() ?>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>
 		<?= $this->fetch('title') ?>
 	</title>
@@ -25,7 +26,8 @@ $scripts = [
 	<?php //$this->Html->css('cake.css') ?>
 
 	<?= $this->Html->css('/bower/normalize.css/normalize.css') ?>
-	<?= $this->Html->css('/bower/bootstrap/dist/css/bootstrap.css') ?>
+	<?= $this->Html->css('/bower/bootstrap/dist/css/bootstrap.min.css') ?>
+	<?= $this->Html->css('/bower/fontawesome/css/font-awesome.min.css') ?>
 	<?= $this->Html->css('/css/styles.css') ?>
 
 	<?= $this->fetch('meta') ?>

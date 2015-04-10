@@ -31,7 +31,7 @@
             </fileset>
         </scaffold-sass>
 
-        <deps output="webroot/js/deps.js" library="./webroot/bower/closure-library" prefix="../../../src/gmMem">
+        <deps output="webroot/js/deps.js" library="./webroot/bower/closure-library" prefix="../../../../src/gmMem">
             <fileset dir="./webroot/src/gmMem">
                 <exclude name=".sass-cache/**"/>
             </fileset>

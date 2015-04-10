@@ -1,3 +1,29 @@
+.gmPlayerLoader {
+  display: block;
+  position: relative;
+  padding: 10px;
+  height: 84px;
+  margin: 0 0 20px 0; }
+  .gmPlayerLoader-Icon {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 32px; }
+  .gmPlayerLoader-Container {
+    padding-left: 74px;
+    padding-right: 74px; }
+  .gmPlayerLoader-Ready {
+    position: absolute;
+    top: 10px;
+    right: 0; }
+    .gmPlayerLoader-Ready .fa {
+      width: 64px;
+      height: 64px;
+      font-size: 64px; }
+  .gmPlayerLoader .progress {
+    margin-top: 10px;
+    height: 44px; }
+
 .gmSignIn {
   max-width: 260px;
   margin: 0 auto; }
