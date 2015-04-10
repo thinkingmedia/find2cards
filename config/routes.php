@@ -39,7 +39,7 @@ use Cake\Routing\Router;
  * `:action` markers.
  *
  */
-Router::defaultRouteClass('Route');
+Router::defaultRouteClass('InflectedRoute');
 
 Router::connect('/',['controller'=>'Games','action'=>'start']);
 Router::connect('/:controller/:action',[]);
