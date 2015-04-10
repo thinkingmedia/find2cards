@@ -9,7 +9,7 @@
 		<div class="gmSignIn">
 			<form action="/" method="POST">
 				<div class="form-group">
-					<input id="FieldUserName" type="text" name="username" value="" placeholder="Your name..."/>
+					<input id="FieldUserName" type="text" name="name" value="" placeholder="Your name..."/>
 				</div>
 				<button type="submit" class="btn btn-primary btn-block"><?= __('Start') ?></button>
 			</form>

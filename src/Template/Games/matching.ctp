@@ -9,4 +9,4 @@
 
 <div class="alert alert-info" role="alert">Connecting with other players...</div>
 
-<button class="btn btn-primary">Ready</button>
+<a class="btn btn-primary" href="/games/play">Ready</a>

@@ -1,117 +1,61 @@
 <?php
 namespace App\Controller;
-
-use App\Controller\AppController;
+use Cake\ORM\TableRegistry;
 
 /**
  * Games Controller
  *
+ * @property \App\Model\Table\UsersTable $Users
  * @property \App\Model\Table\GamesTable $Games
  */
 class GamesController extends AppController
 {
+	public function initialize()
+	{
+		$this->Users = TableRegistry::get('Users');
+		parent::initialize();
+	}
 
-    /**
-     * Index method
-     *
-     * @return void
-     */
-    public function index()
-    {
-        $this->set('games', $this->paginate($this->Games));
-        $this->set('_serialize', ['games']);
-    }
-
+	/**
+	 * Displays the home page for starting a new game.
+	 */
 	public function start()
 	{
-		if(!empty($this->request->data))
+		if (!empty($this->request->data))
 		{
-			$this->redirect('/games/matching');
+			$user = $this->Users->newEntity($this->request->data);
+			$user->token = 'test';
+
+			if ($this->Users->save($user))
+			{
+				$game = $this->Games->newEntity();
+				if($this->Games->save($game))
+				{
+					pr($game);die;
+					//$this->redirect('/games/matching');
+				}
+			}
 		}
 	}
 
+	/**
+	 * Displays the match making page.
+	 */
 	public function matching()
 	{
 	}
 
-    /**
-     * View method
-     *
-     * @param string|null $id Game id.
-     * @return void
-     * @throws \Cake\Network\Exception\NotFoundException When record not found.
-     */
-    public function view($id = null)
-    {
-        $game = $this->Games->get($id, [
-            'contain' => []
-        ]);
-        $this->set('game', $game);
-        $this->set('_serialize', ['game']);
-    }
+	/**
+	 * Displays the game page.
+	 */
+	public function play()
+	{
+	}
 
-    /**
-     * Add method
-     *
-     * @return void Redirects on successful add, renders view otherwise.
-     */
-    public function add()
-    {
-        $game = $this->Games->newEntity();
-        if ($this->request->is('post')) {
-            $game = $this->Games->patchEntity($game, $this->request->data);
-            if ($this->Games->save($game)) {
-                $this->Flash->success('The game has been saved.');
-                return $this->redirect(['action' => 'index']);
-            } else {
-                $this->Flash->error('The game could not be saved. Please, try again.');
-            }
-        }
-        $this->set(compact('game'));
-        $this->set('_serialize', ['game']);
-    }
-
-    /**
-     * Edit method
-     *
-     * @param string|null $id Game id.
-     * @return void Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Network\Exception\NotFoundException When record not found.
-     */
-    public function edit($id = null)
-    {
-        $game = $this->Games->get($id, [
-            'contain' => []
-        ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $game = $this->Games->patchEntity($game, $this->request->data);
-            if ($this->Games->save($game)) {
-                $this->Flash->success('The game has been saved.');
-                return $this->redirect(['action' => 'index']);
-            } else {
-                $this->Flash->error('The game could not be saved. Please, try again.');
-            }
-        }
-        $this->set(compact('game'));
-        $this->set('_serialize', ['game']);
-    }
-
-    /**
-     * Delete method
-     *
-     * @param string|null $id Game id.
-     * @return void Redirects to index.
-     * @throws \Cake\Network\Exception\NotFoundException When record not found.
-     */
-    public function delete($id = null)
-    {
-        $this->request->allowMethod(['post', 'delete']);
-        $game = $this->Games->get($id);
-        if ($this->Games->delete($game)) {
-            $this->Flash->success('The game has been deleted.');
-        } else {
-            $this->Flash->error('The game could not be deleted. Please, try again.');
-        }
-        return $this->redirect(['action' => 'index']);
-    }
+	/**
+	 * Shows the results for a finished game.
+	 */
+	public function stats()
+	{
+	}
 }
