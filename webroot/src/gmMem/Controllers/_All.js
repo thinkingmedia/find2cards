@@ -2,8 +2,8 @@
 //* Do not edit. This file will be auto-updated *
 //***********************************************
 
-@import "Controllers/All";
-@import "gmPlayerLoader/gmPlayerLoader";
+goog.provide("gmMem.Controllers.All");
+goog.require("gmMem.Controllers");
 
-@import "Package";
+goog.require("gmMem.Controllers.gmSignInController");
 

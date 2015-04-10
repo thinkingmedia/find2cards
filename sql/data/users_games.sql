@@ -23,15 +23,14 @@ DROP TABLE IF EXISTS `users_games`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `users_games` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(10) unsigned NOT NULL,
   `game_id` int(10) unsigned NOT NULL,
   `created` datetime NOT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`user_id`,`game_id`),
   KEY `join_users_idx` (`user_id`),
   KEY `join_games_idx` (`game_id`),
-  CONSTRAINT `join_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `join_games` FOREIGN KEY (`game_id`) REFERENCES `games` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `join_games` FOREIGN KEY (`game_id`) REFERENCES `games` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `join_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -41,6 +40,7 @@ CREATE TABLE `users_games` (
 
 LOCK TABLES `users_games` WRITE;
 /*!40000 ALTER TABLE `users_games` DISABLE KEYS */;
+INSERT INTO `users_games` VALUES (10,17,'2015-04-10 23:20:01');
 /*!40000 ALTER TABLE `users_games` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-04-09 16:20:09
+-- Dump completed on 2015-04-10 19:24:31

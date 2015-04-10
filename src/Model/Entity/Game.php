@@ -5,6 +5,9 @@ use Cake\ORM\Entity;
 
 /**
  * Game Entity.
+ *
+ * @property boolean $match_making
+ * @property boolean $finished
  */
 class Game extends Entity
 {
@@ -16,5 +19,6 @@ class Game extends Entity
      */
     protected $_accessible = [
         'match_making' => true,
+        'finished'      => true
     ];
 }

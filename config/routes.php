@@ -5,7 +5,18 @@ use Cake\Routing\Router;
 
 Router::defaultRouteClass('InflectedRoute');
 
-Router::connect('/', ['controller' => 'users', 'action' => 'login']);
+Router::connect('/', ['controller' => 'home', 'action' => 'index']);
+
+Router::connect('/users/login/:type', [
+    'controller' => 'users',
+    'action'     => 'login'
+], ['pass' => ['type']]);
+
+Router::connect('/games/play/:id', [
+    'controller' => 'games',
+    'action'     => 'play'
+], ['pass' => ['id']]);
+
 Router::connect('/:controller/:action', []);
 
 /**

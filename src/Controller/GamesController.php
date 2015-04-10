@@ -1,61 +1,54 @@
 <?php
 namespace App\Controller;
-use Cake\ORM\TableRegistry;
 
 /**
  * Games Controller
  *
- * @property \App\Model\Table\UsersTable $Users
  * @property \App\Model\Table\GamesTable $Games
  */
 class GamesController extends AppController
 {
-	public function initialize()
-	{
-		$this->Users = TableRegistry::get('Users');
-		parent::initialize();
-	}
+    /**
+     * Displays the home page for starting a new game.
+     */
+    public function start()
+    {
+    }
 
-	/**
-	 * Displays the home page for starting a new game.
-	 */
-	public function start()
-	{
-		if (!empty($this->request->data))
-		{
-			$user = $this->Users->newEntity($this->request->data);
-			$user->token = 'test';
+    /**
+     * Displays the match making page.
+     */
+    public function join()
+    {
+        $user_id = (int)$this->Auth->user('id');
+        $game = $this->Games->playing($user_id);
 
-			if ($this->Users->save($user))
-			{
-				$game = $this->Games->newEntity();
-				if($this->Games->save($game))
-				{
-					pr($game);die;
-					//$this->redirect('/games/matching');
-				}
-			}
-		}
-	}
+        // go to game already in progress
+        if($game && !$game->match_making)
+        {
+            $this->redirect(['action'=>'play',$game->id]);
+        }
 
-	/**
-	 * Displays the match making page.
-	 */
-	public function matching()
-	{
-	}
+        // join a new game
+        if(!$game)
+        {
+            $game = $this->Games->join((int)$this->Auth->user('id'));
+        }
+    }
 
-	/**
-	 * Displays the game page.
-	 */
-	public function play()
-	{
-	}
+    /**
+     * Displays the game page.
+     *
+     * @param int $id
+     */
+    public function play($id)
+    {
+    }
 
-	/**
-	 * Shows the results for a finished game.
-	 */
-	public function stats()
-	{
-	}
+    /**
+     * Shows the results for a finished game.
+     */
+    public function stats()
+    {
+    }
 }

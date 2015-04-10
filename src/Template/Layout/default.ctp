@@ -56,9 +56,8 @@ $scripts = [
 		</div>
 	</nav>
 
-	<?= $this->Flash->render() ?>
-
 	<div class="container">
+        <?= $this->Flash->render() ?>
 		<?= $this->fetch('content') ?>
 	</div>
 

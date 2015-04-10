@@ -1,6 +1,7 @@
 <?php
 namespace App\Model\Table;
 
+use Cake\Log\Log;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
@@ -9,23 +10,6 @@ use Cake\Validation\Validator;
  */
 class UsersTable extends Table
 {
-    /**
-     * @param string               $provider Provider name.
-     * @param \Hybrid_User_Profile $profile  The Profile
-     *
-     * @return boolean
-     */
-    public function registration($provider, $profile)
-    {
-        $user = $this->newEntity([
-                                     'name'         => $profile->displayName,
-                                     'provider'     => $provider,
-                                     'provider_uid' => $profile->identifier
-                                 ]);
-
-        return $this->save($user);
-    }
-
     /**
      * Initialize method
      *
@@ -39,11 +23,30 @@ class UsersTable extends Table
         $this->displayField('name');
         $this->primaryKey('id');
         $this->addBehavior('Timestamp');
+
         $this->belongsToMany('Games', [
-            'foreignKey'       => 'user_id',
-            'targetForeignKey' => 'game_id',
-            'joinTable'        => 'users_games'
+            'through'=>'UsersGames'
         ]);
+    }
+
+    /**
+     * @param string               $provider Provider name.
+     * @param \Hybrid_User_Profile $profile  The Profile
+     *
+     * @return boolean
+     */
+    public function registration($provider, $profile)
+    {
+        $user = $this->newEntity([
+                                     'name'         => $profile->displayName,
+                                     'provider'     => $provider,
+                                     'provider_uid' => $profile->identifier
+                                 ]);
+        if(!$this->save($user))
+        {
+            Log::write(LOG_ERR, 'Failed to create new user record');
+        }
+        return true;
     }
 
     /**

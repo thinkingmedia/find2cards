@@ -23,13 +23,13 @@ class AppController extends Controller
 				'plugin'     => false
 			],
 			'loginAction'    => [
-				'controller' => 'users',
-				'action'     => 'login',
+				'controller' => 'home',
+				'action'     => 'index',
 				'plugin'     => false
 			],
 			'logoutRedirect' => [
-				'controller' => 'users',
-				'action'     => 'login',
+				'controller' => 'home',
+				'action'     => 'index',
 				'plugin'     => false
 			],
 			'authenticate'   => [
