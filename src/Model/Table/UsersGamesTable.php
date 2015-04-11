@@ -10,6 +10,7 @@ use Cake\Validation\Validator;
  * UsersGames Model
  *
  * @method UsersGame get($primaryKey, $options = [])
+ * @method UsersGame newEntity($data = null, array $options = [])
  */
 class UsersGamesTable extends Table
 {

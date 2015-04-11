@@ -1,12 +1,15 @@
 <?php
 namespace App\Model\Table;
 
+use App\Model\Entity\Game;
 use Cake\ORM\Table;
 use Cake\ORM\TableRegistry;
 use Cake\Validation\Validator;
 
 /**
  *
+ * @method Game get($primaryKey, $options = [])
+ * @method Game newEntity($data = null, array $options = [])
  */
 class GamesTable extends Table
 {
@@ -56,12 +59,18 @@ class GamesTable extends Table
     private function find_joinable()
     {
         $game = $this->find()
-                     ->where(['match_making' => true])
+                     ->where(['match_making' => true, 'players <' => 4])
                      ->first();
         if (!$game)
         {
-            $game = $this->newEntity();
-            $this->save($game);
+            $query = $this->query();
+            $exp = $query->newExpr('DATE_ADD(NOW(), INTERVAL 1 MINUTE)');
+            $now = $query->newExpr('NOW()');
+            $game_id = $query->insert(['starts', 'created', 'modified'])
+                             ->values(['starts' => $exp, 'created' => $now, 'modified' => $now])
+                             ->execute()
+                             ->lastInsertId();
+            $game = $this->get($game_id);
         }
 
         return $game;
@@ -103,6 +112,7 @@ class GamesTable extends Table
                              ])
                      ->leftJoin('users_games')
                      ->first();
+
         return $game;
     }
 }

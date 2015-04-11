@@ -6,6 +6,7 @@ goog.require('gmMem.Directives');
  * @extends ng.IScope
  *
  * @property {number} value
+ * @property {number} counter
  * @property {Array.<string>} digits
  * @property {gmMem.Directives.gmTimerCtrl} ctrl
  */
@@ -38,17 +39,18 @@ gmMem.Directives.gmTimer = function($interval)
 	 */
 	function _link($scope, $el, $attr)
 	{
-		$scope.value = ~~$scope.value;
+		$scope.$watch('value',function(value)
+		{
+			$scope.counter = value > 0 ? value : 0;
+		});
+
+
 		$interval(function()
 				  {
-					  $scope.value = $scope.value == 0 ? 0 : $scope.value - 1;
+					  $scope.counter = $scope.counter == 0 ? 0 : $scope.counter - 1;
+					  var time = new Date(0, 0, 0, 0, 0, $scope.counter).toTimeString().replace(/.*(\d{2}:\d{2}).*/, "$1");
+					  $scope.digits = (time || '').toString().split('');
 				  }, 1000);
-
-		$scope.$watch('value', function(value)
-		{
-			var time = new Date(0, 0, 0, 0, 0, value).toTimeString().replace(/.*(\d{2}:\d{2}).*/, "$1");
-			$scope.digits = (time || '').toString().split('');
-		});
 	}
 
 	return {

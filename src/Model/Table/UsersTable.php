@@ -1,12 +1,14 @@
 <?php
 namespace App\Model\Table;
 
+use App\Model\Entity\User;
 use Cake\Log\Log;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * Users Model
+ * @method User get($primaryKey, $options = [])
+ * @method User newEntity($data = null, array $options = [])
  */
 class UsersTable extends Table
 {

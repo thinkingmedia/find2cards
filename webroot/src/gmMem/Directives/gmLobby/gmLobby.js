@@ -50,6 +50,10 @@ gmMem.Directives.gmLobbyCtrl.prototype.update = function()
 					 {
 						 this._$scope.players = data.players;
 					 }
+					 if(_.isString(data.starts))
+					 {
+						 this._$scope.starts = moment(data.starts).diff(moment(),'seconds');
+					 }
 					 if(this._$scope.state == 'loading')
 					 {
 						 this._$scope.ready = this.getPlayer().ready;

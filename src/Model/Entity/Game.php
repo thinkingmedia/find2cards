@@ -1,13 +1,13 @@
 <?php
 namespace App\Model\Entity;
 
-use Cake\ORM\Entity;
-
 /**
  * Game Entity.
  *
- * @property boolean $match_making
- * @property boolean $finished
+ * @property boolean   $match_making
+ * @property boolean   $finished
+ * @property \DateTime $starts
+ * @property int       $players
  */
 class Game extends AppEntity
 {
@@ -19,6 +19,8 @@ class Game extends AppEntity
      */
     protected $_accessible = [
         'match_making' => true,
-        'finished'      => true
+        'finished'     => true,
+        'starts'       => true,
+        'players'      => true
     ];
 }

@@ -118,9 +118,11 @@ class LobbiesController extends AppController
                                ->contain('Users')
                                ->select(['UsersGames.ready', 'Users.id', 'Users.name', 'Users.image'])
                                ->where(['UsersGames.game_id' => $game->id])
+                               ->order(['UsersGames.created' => 'DESC'])
                                ->all();
 
         $this->set('players', $players);
-        $this->set('_serialize', ["players"]);
+        $this->set('starts', $game->starts);
+        $this->set('_serialize', ["players","starts"]);
     }
 }

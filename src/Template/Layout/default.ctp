@@ -5,6 +5,7 @@ $scripts = [
 	'/bower/angular-bootstrap/ui-bootstrap-tpls.js',
 	'/bower/jquery/dist/jquery.js',
 	'/bower/lodash/lodash.js',
+    '/bower/moment/moment.js',
 	'/bower/closure-library/closure/goog/base.js',
 	'/js/deps.js',
 	'/src/gmMem/_Package.js',
