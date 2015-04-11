@@ -13,13 +13,16 @@ class GamesController extends AppController
 {
     /**
      * Displays the match making page.
+     *
+     * @param int $game_id
      */
-    public function play()
+    public function play($game_id)
     {
-        $game = $this->Games->playing($this->user_id);
-        if(!$game)
+        $game = $this->Games->get($game_id);
+        if($game->match_making)
         {
-            throw new BadRequestException('Player is not part of any game.');
+            $game->match_making = false;
+            $this->Games->save($game);
         }
     }
 }

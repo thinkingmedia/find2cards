@@ -8,21 +8,9 @@ goog.require('gmMem.Directives');
  * @property {number} value
  * @property {number} counter
  * @property {Array.<string>} digits
- * @property {gmMem.Directives.gmTimerCtrl} ctrl
+ * @property {function()} expired
+ * @property {bool} done
  */
-
-/**
- * @name gmMem.Directives.gmTimerCtrl
- *
- * @param {gmMem.Directives.gmTimerScope} $scope
- *
- * @constructor
- */
-gmMem.Directives.gmTimerCtrl = function($scope)
-{
-	this._$scope = $scope;
-	this._$scope.ctrl = this;
-};
 
 /**
  * @param {ng.IIntervalService} $interval
@@ -39,15 +27,28 @@ gmMem.Directives.gmTimer = function($interval)
 	 */
 	function _link($scope, $el, $attr)
 	{
-		$scope.$watch('value',function(value)
+		$scope.done = false;
+
+		$scope.$watch('value', function(value)
 		{
 			$scope.counter = value > 0 ? value : 0;
 		});
 
+		$scope.$watch('done',function(value)
+		{
+			if(value)
+			{
+				$scope.expired();
+			}
+		});
 
 		$interval(function()
 				  {
 					  $scope.counter = $scope.counter == 0 ? 0 : $scope.counter - 1;
+					  if($scope.counter == 0)
+					  {
+						  $scope.done = true;
+					  }
 					  var time = new Date(0, 0, 0, 0, 0, $scope.counter).toTimeString().replace(/.*(\d{2}:\d{2}).*/, "$1");
 					  $scope.digits = (time || '').toString().split('');
 				  }, 1000);
@@ -56,13 +57,10 @@ gmMem.Directives.gmTimer = function($interval)
 	return {
 		restrict:    'EA',
 		scope:       {
-			value: '@'
+			'value':   '@',
+			'expired': '&'
 		},
 		link:        _link,
-		controller:  [
-			'$scope',
-			gmMem.Directives.gmTimerCtrl
-		],
 		templateUrl: '/src/gmMem/Directives/gmTimer/gmTimer.html'
 	}
 };

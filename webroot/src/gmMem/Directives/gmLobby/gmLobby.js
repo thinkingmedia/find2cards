@@ -20,14 +20,16 @@ goog.require('gmMem.Directives');
  * @param {gmMem.Directives.gmLobbyScope} $scope
  * @param {ng.IHttpService} $http
  * @param {ng.IQService} $q
+ * @param {ng.IWindowService} $window
  *
  * @constructor
  */
-gmMem.Directives.gmLobbyCtrl = function($scope, $http, $q)
+gmMem.Directives.gmLobbyCtrl = function($scope, $http, $q, $window)
 {
 	this._$scope = $scope;
 	this._$http = $http;
 	this._$q = $q;
+	this._$window = $window;
 
 	this._$scope.ctrl = this;
 	this._$scope.ready = false;
@@ -76,6 +78,8 @@ gmMem.Directives.gmLobbyCtrl.prototype.getPlayer = function()
 };
 
 /**
+ * Toggles the ready state for the current player.
+ *
  * @param {Event} $event
  */
 gmMem.Directives.gmLobbyCtrl.prototype.ready = function($event)
@@ -95,6 +99,15 @@ gmMem.Directives.gmLobbyCtrl.prototype.ready = function($event)
 	}
 
 	this.getPlayer().ready = this._$scope.ready;
+};
+
+/**
+ * Called when the timer has run out.
+ */
+gmMem.Directives.gmLobbyCtrl.prototype.play = function()
+{
+	console.log('game is starting!');
+	this._$window.location.href = '/games/play/'+this._$scope.game;
 };
 
 /**
@@ -133,6 +146,7 @@ gmMem.Directives.gmLobby = function($interval)
 			'$scope',
 			'$http',
 			'$q',
+			'$window',
 			gmMem.Directives.gmLobbyCtrl
 		],
 		templateUrl: '/src/gmMem/Directives/gmLobby/gmLobby.html'
