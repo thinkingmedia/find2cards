@@ -29,7 +29,7 @@ if (isset($google_id) && isset($google_secret))
     $config['HybridAuth']['providers']['Google'] = [
         "enabled" => true,
         "keys"    => array("id" => $google_id, "secret" => $google_secret),
-        "scope"   => "",
+        "scope"   => "profile",
         "color"   => "#dd4b39",
         "icon"    => "fa fa-google-plus fa-lg"
     ];
