@@ -1,13 +1,56 @@
 @import "../../Config";
 
 .gmLobby {
+  $size: 64px;
+
+  &-Loading {
+    display: block;
+    line-height: 100px;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 32px;
+  }
+
+  &-Info {
+    text-align: center;
+  }
+
+  &-Player {
+
+    display: block;
+    position: relative;
+    //border: 1px solid $border;
+    padding: $margin;
+    height: $size + $margin * 2;
+    margin: 0 0 $spacer 0;
+
+    &-Icon {
+      position: absolute;
+      top: $margin;
+      left: $margin;
+      font-size: $size / 2;
+    }
+
+    &-Container {
+      padding-left: $size + $margin;
+      padding-right: $size + $margin;
+    }
+
+    &-Ready {
+      position: absolute;
+      top: $margin;
+      right: 0;
+      .fa {
+        width: $size;
+        height: $size;
+        font-size: $size;
+      }
+    }
+  }
+
+  .progress {
+    margin-top: $margin;
+    height: $size - $margin * 2;
+  }
 }
-
-
-
-
-
-
-
-
 

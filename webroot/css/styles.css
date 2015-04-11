@@ -11,6 +11,41 @@
  * A partial implementation of the Ruby display functions from Compass:
  * https://github.com/Compass/compass/blob/stable/core/lib/compass/core/sass_extensions/functions/display.rb
  */
+@import url(http://fonts.googleapis.com/css?family=Wallpoet);
+.gmLobby-Loading {
+  display: block;
+  line-height: 100px;
+  vertical-align: middle;
+  text-align: center;
+  font-size: 32px; }
+.gmLobby-Info {
+  text-align: center; }
+.gmLobby-Player {
+  display: block;
+  position: relative;
+  padding: 10px;
+  height: 84px;
+  margin: 0 0 20px 0; }
+  .gmLobby-Player-Icon {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 32px; }
+  .gmLobby-Player-Container {
+    padding-left: 74px;
+    padding-right: 74px; }
+  .gmLobby-Player-Ready {
+    position: absolute;
+    top: 10px;
+    right: 0; }
+    .gmLobby-Player-Ready .fa {
+      width: 64px;
+      height: 64px;
+      font-size: 64px; }
+.gmLobby .progress {
+  margin-top: 10px;
+  height: 44px; }
+
 /*
  * A partial implementation of the Ruby list functions from Compass:
  * https://github.com/Compass/compass/blob/stable/lib/compass/sass_extensions/functions/lists.rb
@@ -23,7 +58,6 @@
  * A partial implementation of the Ruby display functions from Compass:
  * https://github.com/Compass/compass/blob/stable/core/lib/compass/core/sass_extensions/functions/display.rb
  */
-@import url(http://fonts.googleapis.com/css?family=Wallpoet);
 .gmPlayer {
   display: block;
   position: relative;
@@ -303,44 +337,6 @@
  * A partial implementation of the Ruby display functions from Compass:
  * https://github.com/Compass/compass/blob/stable/core/lib/compass/core/sass_extensions/functions/display.rb
  */
-.gmPlayerLoader {
-  display: block;
-  position: relative;
-  padding: 10px;
-  height: 84px;
-  margin: 0 0 20px 0; }
-  .gmPlayerLoader-Icon {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    font-size: 32px; }
-  .gmPlayerLoader-Container {
-    padding-left: 74px;
-    padding-right: 74px; }
-  .gmPlayerLoader-Ready {
-    position: absolute;
-    top: 10px;
-    right: 0; }
-    .gmPlayerLoader-Ready .fa {
-      width: 64px;
-      height: 64px;
-      font-size: 64px; }
-  .gmPlayerLoader .progress {
-    margin-top: 10px;
-    height: 44px; }
-
-/*
- * A partial implementation of the Ruby list functions from Compass:
- * https://github.com/Compass/compass/blob/stable/lib/compass/sass_extensions/functions/lists.rb
- */
-/*
- * A partial implementation of the Ruby constants functions from Compass:
- * https://github.com/Compass/compass/blob/stable/lib/compass/sass_extensions/functions/constants.rb
- */
-/*
- * A partial implementation of the Ruby display functions from Compass:
- * https://github.com/Compass/compass/blob/stable/core/lib/compass/core/sass_extensions/functions/display.rb
- */
 .gmTimer {
   font-family: 'Wallpoet', cursive;
   font-size: 5em;
@@ -374,10 +370,10 @@
  * https://github.com/Compass/compass/blob/stable/core/lib/compass/core/sass_extensions/functions/display.rb
  */
 body {
-  padding-top: 60px; }
+  padding-top: 80px; }
 
 .starter-template {
-  padding: 40px 15px;
+  padding: 50px 15px;
   text-align: center; }
 
 .container {

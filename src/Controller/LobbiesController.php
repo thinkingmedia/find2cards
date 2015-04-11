@@ -45,6 +45,7 @@ class LobbiesController extends AppController
             $this->redirect(['controller' => 'games', 'action' => 'play']);
         }
         $this->set('game', $game);
+        $this->set('user_id', $this->user_id);
     }
 
     /**
@@ -75,6 +76,26 @@ class LobbiesController extends AppController
 
         $player = $this->Lobby->get([$this->user_id, $game->id]);
         $player->ready = true;
+
+        $this->Lobby->save($player);
+
+        $this->set('game_id', $game->id);
+        $this->set('_serialize', ['game_id']);
+    }
+
+    /**
+     * User toggles their ready state.
+     *
+     * @param int|null $game_id
+     */
+    public function unready($game_id = null)
+    {
+        $this->RequestHandler->respondAs('json');
+        $this->viewClass = 'Json';
+        $game = $this->Games->get((int)$game_id);
+
+        $player = $this->Lobby->get([$this->user_id, $game->id]);
+        $player->ready = false;
 
         $this->Lobby->save($player);
 

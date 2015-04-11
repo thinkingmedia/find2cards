@@ -37,7 +37,6 @@ gmMem.Directives.gmPlayer = function()
 		$scope.$watch('value',function(value)
 		{
 			$scope.deg = 5 * Math.round((360 * (~~value / 100)) / 5);
-			console.log($scope.deg);
 		});
 	}
 
