@@ -6,6 +6,11 @@
             <div class="gmGame-Loading" ng-show="state != ''">
                 <i class="fa fa-spinner fa-pulse"></i>
             </div>
+
+            <div class="gmGame-Players">
+                <gm-player ng-repeat="player in players track by $index" image="{{player.user.image}}" value="43"></gm-player>
+            </div>
+
             <div class="gmGame-Timer">
                 <gm-timer value="120" expired=""></gm-timer>
             </div>

@@ -26,10 +26,12 @@ CREATE TABLE `games` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `match_making` tinyint(1) unsigned NOT NULL DEFAULT '1',
   `finished` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `starts` datetime NOT NULL,
+  `players` int(10) unsigned NOT NULL DEFAULT '0',
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +40,6 @@ CREATE TABLE `games` (
 
 LOCK TABLES `games` WRITE;
 /*!40000 ALTER TABLE `games` DISABLE KEYS */;
-INSERT INTO `games` VALUES (19,1,0,'2015-04-11 04:14:47','2015-04-11 04:14:47');
 /*!40000 ALTER TABLE `games` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-04-11  3:17:42
+-- Dump completed on 2015-04-11 13:25:14

@@ -13,4 +13,4 @@ $this->Html->scriptStart(['block'=>true,'safe'=>false]);?>
     gmMem.Angular.constant('cards',cards);
 })();
 <?php $this->Html->scriptEnd(); ?>
-<gm-game game="<?= $game_id ?>" player="<?= $user_id ?>" interval="1000"></gm-game>
+<gm-game game="<?= $game_id ?>" player="<?= $user_id ?>" interval="2000"></gm-game>

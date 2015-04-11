@@ -16,32 +16,34 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `users`
+-- Table structure for table `cards`
 --
 
-DROP TABLE IF EXISTS `users`;
+DROP TABLE IF EXISTS `cards`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `users` (
+CREATE TABLE `cards` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(80) NOT NULL,
-  `image` varchar(512) DEFAULT NULL,
-  `provider` varchar(100) NOT NULL,
-  `provider_uid` varchar(200) NOT NULL,
-  `created` datetime NOT NULL,
-  `modified` datetime NOT NULL,
+  `user_id` int(10) unsigned NOT NULL,
+  `game_id` int(10) unsigned NOT NULL,
+  `order` int(10) unsigned NOT NULL DEFAULT '0',
+  `type` varchar(45) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `providers` (`provider`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+  KEY `cards_users_idx` (`user_id`),
+  KEY `cards_games_idx` (`game_id`),
+  KEY `order` (`order`),
+  CONSTRAINT `cards_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `cards_games` FOREIGN KEY (`game_id`) REFERENCES `games` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=553 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `users`
+-- Dumping data for table `cards`
 --
 
-LOCK TABLES `users` WRITE;
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+LOCK TABLES `cards` WRITE;
+/*!40000 ALTER TABLE `cards` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cards` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

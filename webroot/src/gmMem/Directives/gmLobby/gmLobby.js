@@ -19,33 +19,30 @@ goog.require('gmMem.Directives');
  *
  * @param {gmMem.Directives.gmLobbyScope} $scope
  * @param {ng.IHttpService} $http
- * @param {ng.IQService} $q
  * @param {ng.IWindowService} $window
  *
  * @constructor
  */
-gmMem.Directives.gmLobbyCtrl = function($scope, $http, $q, $window)
+gmMem.Directives.gmLobbyCtrl = function($scope, $http, $window)
 {
 	this._$scope = $scope;
 	this._$http = $http;
-	this._$q = $q;
 	this._$window = $window;
 
 	this._$scope.ctrl = this;
 	this._$scope.ready = false;
 	this._$scope.state = 'loading';
 	this._$scope.players = [];
-	this.canceler = $q.defer();
 };
 
 /**
  * Updates the list of players and their status.
+ *
+ * @returns {ng.IHttpPromise<T>}
  */
 gmMem.Directives.gmLobbyCtrl.prototype.update = function()
 {
-	this.canceler.resolve();
-	this.canceler = this._$q.defer();
-	this._$http.get('/lobbies/update/' + this._$scope.game, {timeout: this.canceler.promise})
+	return this._$http.get('/lobbies/update/' + this._$scope.game)
 		.success(function(data)
 				 {
 					 if(_.isArray(data.players))
@@ -54,7 +51,7 @@ gmMem.Directives.gmLobbyCtrl.prototype.update = function()
 					 }
 					 if(_.isString(data.starts))
 					 {
-						 this._$scope.starts = moment(data.starts).diff(moment(),'seconds');
+						 this._$scope.starts = moment(data.starts).diff(moment(), 'seconds');
 					 }
 					 if(this._$scope.state == 'loading')
 					 {
@@ -86,7 +83,6 @@ gmMem.Directives.gmLobbyCtrl.prototype.ready = function($event)
 {
 	$event.preventDefault();
 
-	this.canceler.resolve();
 	if(this._$scope.ready)
 	{
 		this._$scope.ready = false;
@@ -106,16 +102,15 @@ gmMem.Directives.gmLobbyCtrl.prototype.ready = function($event)
  */
 gmMem.Directives.gmLobbyCtrl.prototype.play = function()
 {
-	console.log('game is starting!');
-	this._$window.location.href = '/games/play/'+this._$scope.game;
+	this._$window.location.href = '/games/play/' + this._$scope.game;
 };
 
 /**
- * @param {ng.IIntervalService} $interval
+ * $param {ng.ITimeoutService} $timeout
  *
  * @returns {ng.IDirective}
  */
-gmMem.Directives.gmLobby = function($interval)
+gmMem.Directives.gmLobby = function($timeout)
 {
 	/**
 	 * @param {gmMem.Directives.gmLobbyScope} $scope
@@ -126,12 +121,17 @@ gmMem.Directives.gmLobby = function($interval)
 	 */
 	function _link($scope, $el, $attr, ctrl)
 	{
-		ctrl.update();
-
-		$interval(function()
-				  {
-					  ctrl.update();
-				  }, $scope.interval || 1000);
+		function doUpdate()
+		{
+			ctrl.update()['finally'](function()
+									 {
+										 $timeout(function()
+												  {
+													  doUpdate();
+												  }, $scope.interval || 2500);
+									 });
+		}
+		doUpdate();
 	}
 
 	return {
@@ -145,7 +145,6 @@ gmMem.Directives.gmLobby = function($interval)
 		controller:  [
 			'$scope',
 			'$http',
-			'$q',
 			'$window',
 			gmMem.Directives.gmLobbyCtrl
 		],
@@ -154,6 +153,6 @@ gmMem.Directives.gmLobby = function($interval)
 };
 
 gmMem.Angular.directive('gmLobby', [
-	'$interval',
+	'$timeout',
 	gmMem.Directives.gmLobby
 ]);

@@ -22,22 +22,19 @@ goog.require('gmMem.Directives');
  *
  * @param {gmMem.Directives.gmGameScope} $scope
  * @param {ng.IHttpService} $http
- * @param {ng.IQService} $q
  * @param {Array.<Object>} cards
  *
  * @constructor
  */
-gmMem.Directives.gmGameCtrl = function($scope, $http, $q, cards)
+gmMem.Directives.gmGameCtrl = function($scope, $http, cards)
 {
 	this._$scope = $scope;
 	this._$http = $http;
-	this._$q = $q;
 
 	this._$scope.ctrl = this;
 	this._$scope.state = 'loading';
 	this._$scope.players = [];
 	this._$scope.cards = cards;
-	this.canceler = $q.defer();
 
 	var row = 0;
 	var col = 0;
@@ -51,15 +48,14 @@ gmMem.Directives.gmGameCtrl = function($scope, $http, $q, cards)
 			col = 0;
 		}
 	});
-
-	//console.log(cards);
 };
 
+/**
+ * @returns {ng.IHttpPromise<T>}
+ */
 gmMem.Directives.gmGameCtrl.prototype.update = function()
 {
-	this.canceler.resolve();
-	this.canceler = this._$q.defer();
-	this._$http.get('/games/update/' + this._$scope.game, {timeout: this.canceler.promise})
+	return this._$http.get('/games/update/' + this._$scope.game)
 		.success(function(data)
 				 {
 					 if(_.isArray(data.players))
@@ -72,11 +68,11 @@ gmMem.Directives.gmGameCtrl.prototype.update = function()
 
 /**
  * @param {ng.IWindowService} $window
- * @param {ng.IIntervalService} $interval
+ * @param {ng.ITimeoutService} $timeout
  *
  * @returns {ng.IDirective}
  */
-gmMem.Directives.gmGame = function($window, $interval)
+gmMem.Directives.gmGame = function($window, $timeout)
 {
 	/**
 	 * @param {gmMem.Directives.gmGameScope} $scope
@@ -107,11 +103,18 @@ gmMem.Directives.gmGame = function($window, $interval)
 		});
 
 		resize();
-		ctrl.update();
-		$interval(function()
-				  {
-					  ctrl.update();
-				  }, $scope.interval || 1000);
+
+		function doUpdate()
+		{
+			ctrl.update()['finally'](function()
+									 {
+										 $timeout(function()
+												  {
+													  doUpdate();
+												  }, $scope.interval || 2500);
+									 });
+		}
+		doUpdate();
 	}
 
 	return {
@@ -125,7 +128,6 @@ gmMem.Directives.gmGame = function($window, $interval)
 		controller:  [
 			'$scope',
 			'$http',
-			'$q',
 			'cards',
 			gmMem.Directives.gmGameCtrl
 		],
@@ -135,6 +137,6 @@ gmMem.Directives.gmGame = function($window, $interval)
 
 gmMem.Angular.directive('gmGame', [
 	'$window',
-	'$interval',
+	'$timeout',
 	gmMem.Directives.gmGame
 ]);
