@@ -1,12 +1,15 @@
 <?php
 namespace App\Model\Table;
 
+use App\Model\Entity\UsersGame;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
  * UsersGames Model
+ *
+ * @method UsersGame get($primaryKey, $options = [])
  */
 class UsersGamesTable extends Table
 {

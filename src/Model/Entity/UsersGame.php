@@ -6,8 +6,9 @@ use Cake\ORM\Entity;
 /**
  * UsersGame Entity.
  *
- * @property int $user_id
- * @property int $game_id
+ * @property int     $user_id
+ * @property int     $game_id
+ * @property boolean $ready
  */
 class UsersGame extends Entity
 {
@@ -20,7 +21,8 @@ class UsersGame extends Entity
     protected $_accessible = [
         'user_id' => true,
         'game_id' => true,
-        'user' => true,
-        'game' => true,
+        'ready'   => true,
+        'user'    => true,
+        'game'    => true,
     ];
 }
