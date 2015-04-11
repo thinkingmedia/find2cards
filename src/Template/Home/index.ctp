@@ -1,9 +1,3 @@
-<?php
-//$this->Form->submit('Login');
-?>
-
-<?= $this->Flash->render('auth'); ?>
-
 <?php foreach (\Cake\Core\Configure::read('HybridAuth.providers') as $name => $options): ?>
     <a class="btn"
        href="/users/login/<?= $name ?>"

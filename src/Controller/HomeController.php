@@ -16,7 +16,7 @@ class HomeController extends AppController
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
-        $this->Auth->allow();
+        $this->Auth->allow(['index']);
     }
 
     /**
@@ -26,7 +26,14 @@ class HomeController extends AppController
     {
         if (!empty($this->Auth->user()))
         {
-            $this->redirect(['controller' => 'games', 'action' => 'start']);
+            $this->redirect(['action' => 'session']);
         }
+    }
+
+    /**
+     * This is the home page for a user that is logged in.
+     */
+    public function session()
+    {
     }
 }

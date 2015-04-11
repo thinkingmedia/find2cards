@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use Cake\Controller\Controller;
+use Cake\Event\Event;
 
 /**
  * @property \Cake\Controller\Component\FlashComponent $Flash
@@ -9,6 +10,10 @@ use Cake\Controller\Controller;
  */
 class AppController extends Controller
 {
+    /**
+     * @var int The current user.
+     */
+    protected $user_id;
 
 	/**
 	 * Configure components.
@@ -18,8 +23,8 @@ class AppController extends Controller
 		$this->loadComponent('Flash');
 		$this->loadComponent('Auth', [
 			'loginRedirect'  => [
-				'controller' => 'games',
-				'action'     => 'start',
+				'controller' => 'home',
+				'action'     => 'session',
 				'plugin'     => false
 			],
 			'loginAction'    => [
@@ -39,4 +44,14 @@ class AppController extends Controller
 			]
 		]);
 	}
+
+    /**
+     * @param Event $event
+     */
+    public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter($event);
+
+        $this->user_id = (int)$this->Auth->user('id');
+    }
 }

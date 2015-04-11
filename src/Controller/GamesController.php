@@ -1,5 +1,8 @@
 <?php
+
 namespace App\Controller;
+
+use Cake\Network\Exception\BadRequestException;
 
 /**
  * Games Controller
@@ -9,46 +12,14 @@ namespace App\Controller;
 class GamesController extends AppController
 {
     /**
-     * Displays the home page for starting a new game.
-     */
-    public function start()
-    {
-    }
-
-    /**
      * Displays the match making page.
      */
-    public function join()
+    public function play()
     {
-        $user_id = (int)$this->Auth->user('id');
-        $game = $this->Games->playing($user_id);
-
-        // go to game already in progress
-        if($game && !$game->match_making)
-        {
-            $this->redirect(['action'=>'play',$game->id]);
-        }
-
-        // join a new game
+        $game = $this->Games->playing($this->user_id);
         if(!$game)
         {
-            $game = $this->Games->join((int)$this->Auth->user('id'));
+            throw new BadRequestException('Player is not part of any game.');
         }
-    }
-
-    /**
-     * Displays the game page.
-     *
-     * @param int $id
-     */
-    public function play($id)
-    {
-    }
-
-    /**
-     * Shows the results for a finished game.
-     */
-    public function stats()
-    {
     }
 }

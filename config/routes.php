@@ -12,11 +12,8 @@ Router::connect('/users/login/:type', [
     'action'     => 'login'
 ], ['pass' => ['type']]);
 
-Router::connect('/games/play/:id', [
-    'controller' => 'games',
-    'action'     => 'play'
-], ['pass' => ['id']]);
-
+Router::connect('/:controller', ['action' => 'index']);
+Router::connect('/:controller/:action/:id', [], ['id' => '\d+', 'pass' => ['id']]);
 Router::connect('/:controller/:action', []);
 
 /**
