@@ -34,13 +34,18 @@ gmMem.Directives.gmPlayer = function()
 	 */
 	function _link($scope, $el, $attr)
 	{
+		$scope.$watch('value',function(value)
+		{
+			$scope.deg = 5 * Math.round((360 * (~~value / 100)) / 5);
+			console.log($scope.deg);
+		});
 	}
 
 	return {
 		restrict:    'EA',
 		scope:       {
 			'image': '@',
-			'size':  '@'
+			'value': '@'
 		},
 		link:        _link,
 		controller:  [
