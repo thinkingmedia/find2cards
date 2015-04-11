@@ -56,7 +56,7 @@ class LobbiesController extends AppController
     public function leave($game_id = null)
     {
         $game = $this->Games->get((int)$game_id);
-        $record = $this->Lobby->get([$this->user_id, $game->id]);
+        $record = $this->Lobby->get([$this->user_id, $game_id]);
         $this->Lobby->delete($record);
 
         $this->Flash->info('You are no longer waiting to play.');
@@ -74,7 +74,7 @@ class LobbiesController extends AppController
         $this->viewClass = 'Json';
         $game = $this->Games->get((int)$game_id);
 
-        $player = $this->Lobby->get([$this->user_id, $game->id]);
+        $player = $this->Lobby->get([$this->user_id, $game_id]);
         $player->ready = true;
 
         $this->Lobby->save($player);
@@ -94,7 +94,7 @@ class LobbiesController extends AppController
         $this->viewClass = 'Json';
         $game = $this->Games->get((int)$game_id);
 
-        $player = $this->Lobby->get([$this->user_id, $game->id]);
+        $player = $this->Lobby->get([$this->user_id, $game_id]);
         $player->ready = false;
 
         $this->Lobby->save($player);
@@ -117,7 +117,7 @@ class LobbiesController extends AppController
         $players = $this->Lobby->find()
                                ->contain('Users')
                                ->select(['UsersGames.ready', 'Users.id', 'Users.name', 'Users.image'])
-                               ->where(['UsersGames.game_id' => $game->id])
+                               ->where(['UsersGames.game_id' => $game_id])
                                ->order(['UsersGames.created' => 'DESC'])
                                ->all();
 

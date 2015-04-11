@@ -12,6 +12,48 @@
  * https://github.com/Compass/compass/blob/stable/core/lib/compass/core/sass_extensions/functions/display.rb
  */
 @import url(http://fonts.googleapis.com/css?family=Wallpoet);
+.gmGame-Loading {
+  display: block;
+  line-height: 32px;
+  vertical-align: middle;
+  text-align: center;
+  font-size: 32px; }
+.gmGame-Timer {
+  text-align: center; }
+.gmGame-Board {
+  display: block;
+  position: relative;
+  max-width: 300px;
+  margin: 0 auto; }
+.gmGame-Card {
+  display: block;
+  position: absolute;
+  cursor: pointer; }
+.gmGame-Card-Cover {
+  display: block;
+  width: 90%;
+  height: 90%;
+  border: 1px solid #eee;
+  background-color: #aaa;
+  margin: 5%;
+  -webkit-border-radius: 10%;
+  -moz-border-radius: 10%;
+  -ms-border-radius: 10%;
+  -o-border-radius: 10%;
+  border-radius: 10%; }
+
+/*
+ * A partial implementation of the Ruby list functions from Compass:
+ * https://github.com/Compass/compass/blob/stable/lib/compass/sass_extensions/functions/lists.rb
+ */
+/*
+ * A partial implementation of the Ruby constants functions from Compass:
+ * https://github.com/Compass/compass/blob/stable/lib/compass/sass_extensions/functions/constants.rb
+ */
+/*
+ * A partial implementation of the Ruby display functions from Compass:
+ * https://github.com/Compass/compass/blob/stable/core/lib/compass/core/sass_extensions/functions/display.rb
+ */
 .gmLobby-Loading {
   display: block;
   line-height: 100px;

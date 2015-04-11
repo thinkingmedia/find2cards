@@ -1,0 +1,43 @@
+@import "../../Config";
+
+.gmGame {
+
+  &-Loading {
+    display: block;
+    line-height: 32px;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 32px;
+  }
+
+  &-Timer {
+    text-align: center;
+  }
+
+  &-Board {
+    display: block;
+    position: relative;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  &-Card {
+    display: block;
+    position: absolute;
+    cursor: pointer;
+  }
+
+  &-Card-Cover {
+    $margin: 5%;
+    display: block;
+    width: 100% - $margin * 2;
+    height: 100% - $margin * 2;
+    border: 1px solid $border;
+    background-color: #aaa;
+    margin: $margin;
+    @include border-radius(10%);
+  }
+
+}
+
+

@@ -1,6 +1,16 @@
-<div>player A</div>
-<div>player B</div>
-<div>player C</div>
-<div>player D</div>
+<?php
+/**
+ * @var int   $game_id
+ * @var int   $user_id
+ * @var array $cards
+ */
 
-<a class="btn btn-primary" href="/games/stats">Finished</a>
+$json = json_encode($cards);
+$this->Html->scriptStart(['block'=>true,'safe'=>false]);?>
+(function(){
+    var cards = <?=$json?>;
+
+    gmMem.Angular.constant('cards',cards);
+})();
+<?php $this->Html->scriptEnd(); ?>
+<gm-game game="<?= $game_id ?>" player="<?= $user_id ?>" interval="1000"></gm-game>
