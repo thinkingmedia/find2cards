@@ -9,6 +9,7 @@ use Cake\ORM\Entity;
  * @property int     $user_id
  * @property int     $game_id
  * @property boolean $ready
+ * @property boolean $started
  */
 class UsersGame extends Entity
 {
@@ -22,6 +23,7 @@ class UsersGame extends Entity
         'user_id' => true,
         'game_id' => true,
         'ready'   => true,
+        'started' => true,
         'user'    => true,
         'game'    => true,
     ];
