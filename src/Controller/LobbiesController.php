@@ -70,7 +70,7 @@ class LobbiesController extends AppController
     public function ready($game_id = null)
     {
         $this->RequestHandler->respondAs('json');
-        $this->viewClass = 'json';
+        $this->viewClass = 'Json';
         $game = $this->Games->get((int)$game_id);
 
         $player = $this->Lobby->get([$this->user_id, $game->id]);

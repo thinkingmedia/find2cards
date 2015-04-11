@@ -1,3 +1,15 @@
-<div class="gmPlayer">
-    <img src="{{image}}" width="{{size}}" height="{{size}}">
+<div class="gmPlayer player1">
+    <div class="gmPlayer-Bg"></div>
+
+    <div ng-show="deg < 180" class="gmPlayer-Hold deg0">
+        <div ng-class="'gmPlayer-Pie deg'+deg"></div>
+    </div>
+    <div ng-show="deg >= 180" class="gmPlayer-Hold deg0">
+        <div class="gmPlayer-Pie deg180"></div>
+    </div>
+    <div ng-show="deg > 180" class="gmPlayer-Hold deg180">
+        <div ng-class="'gmPlayer-Pie deg'+(deg - 180)"></div>
+    </div>
+
+    <img src="{{image}}" class="img-circle">
 </div>

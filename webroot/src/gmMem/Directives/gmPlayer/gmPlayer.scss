@@ -2,15 +2,67 @@
 
 .gmPlayer {
   $size: 64px;
+  $frame: 8px;
 
   display: block;
   position: relative;
-  //border: 1px solid $border;
-  padding: $margin;
-  height: $size + $margin * 2;
-  margin: 0 0 $spacer 0;
+  width: $size;
+  height: $size;
 
-  font-size: $size / 2;
+  @for $i from 0 through 36 {
+    $deg: $i * 5;
+    .deg#{$deg} {
+      @include transform(rotate(#{$deg}deg));
+    }
+  }
+
+  &.player1 .gmPlayer-Pie {
+    background-color: blue;
+  }
+  &.player2 .gmPlayer-Pie {
+    background-color: green;
+  }
+  &.player3 .gmPlayer-Pie {
+    background-color: orange;
+  }
+  &.player4 .gmPlayer-Pie {
+    background-color: #ffff00;
+  }
+
+  img {
+    display: block;
+    position: absolute;
+    top: $frame;
+    left: $frame;
+    width: $size - $frame * 2;
+    height: $size - $frame * 2;
+  }
+
+  &-Bg {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: $size;
+    height: $size;
+    background-color: $black;
+    border-radius: 50%;
+  }
+
+  &-Pie {
+    position: absolute;
+    width: $size;
+    height: $size;
+    clip: rect(0px, $size / 2, $size, 0px);
+    @include border-radius($size / 2);
+  }
+
+  &-Hold {
+    position: absolute;
+    width: $size;
+    height: $size;
+    clip: rect(0px, $size, $size, $size / 2);
+  }
 }
 
 
