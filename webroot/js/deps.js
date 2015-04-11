@@ -2,14 +2,15 @@
 // Please do not edit.
 goog.addDependency('../../../../src/gmMem/Controllers/_All.js', ['gmMem.Controllers.All'], ['gmMem.Controllers'], false);
 goog.addDependency('../../../../src/gmMem/Controllers/_Package.js', ['gmMem.Controllers'], ['gmMem'], false);
-goog.addDependency('../../../../src/gmMem/Directives/_All.js', ['gmMem.Directives.All'], ['gmMem.Directives', 'gmMem.Directives.gmLobby', 'gmMem.Directives.gmTimer'], false);
+goog.addDependency('../../../../src/gmMem/Directives/_All.js', ['gmMem.Directives.All'], ['gmMem.Directives', 'gmMem.Directives.gmLobby', 'gmMem.Directives.gmPlayer', 'gmMem.Directives.gmPlayerLoader', 'gmMem.Directives.gmTimer'], false);
 goog.addDependency('../../../../src/gmMem/Directives/_Package.js', ['gmMem.Directives'], ['gmMem'], false);
 goog.addDependency('../../../../src/gmMem/Directives/gmLobby/gmLobby.js', ['gmMem.Directives.gmLobby'], ['gmMem.Directives'], false);
+goog.addDependency('../../../../src/gmMem/Directives/gmPlayer/gmPlayer.js', ['gmMem.Directives.gmPlayer'], ['gmMem.Directives'], false);
+goog.addDependency('../../../../src/gmMem/Directives/gmPlayerLoader/gmPlayerLoader.js', ['gmMem.Directives.gmPlayerLoader'], ['gmMem.Directives'], false);
 goog.addDependency('../../../../src/gmMem/Directives/gmTimer/gmTimer.js', ['gmMem.Directives.gmTimer'], ['gmMem.Directives'], false);
-goog.addDependency('../../../../src/gmMem/_All.js', ['gmMem.All'], ['gmMem', 'gmMem.Controllers.All', 'gmMem.Directives.All', 'gmMem.gmConfig', 'gmMem.gmPlayerLoader'], false);
+goog.addDependency('../../../../src/gmMem/_All.js', ['gmMem.All'], ['gmMem', 'gmMem.Controllers.All', 'gmMem.Directives.All', 'gmMem.gmConfig'], false);
 goog.addDependency('../../../../src/gmMem/_Package.js', ['gmMem'], [], false);
 goog.addDependency('../../../../src/gmMem/gmConfig/gmConfig.js', ['gmMem.gmConfig'], ['gmMem'], false);
-goog.addDependency('../../../../src/gmMem/gmPlayerLoader/gmPlayerLoader.js', ['gmMem.gmPlayerLoader'], ['gmMem'], false);
 goog.addDependency('a11y/aria/announcer.js', ['goog.a11y.aria.Announcer'], ['goog.Disposable', 'goog.Timer', 'goog.a11y.aria', 'goog.a11y.aria.LivePriority', 'goog.a11y.aria.State', 'goog.dom', 'goog.dom.TagName', 'goog.object'], false);
 goog.addDependency('a11y/aria/announcer_test.js', ['goog.a11y.aria.AnnouncerTest'], ['goog.a11y.aria', 'goog.a11y.aria.Announcer', 'goog.a11y.aria.LivePriority', 'goog.a11y.aria.State', 'goog.array', 'goog.dom', 'goog.dom.TagName', 'goog.dom.iframe', 'goog.testing.MockClock', 'goog.testing.jsunit'], false);
 goog.addDependency('a11y/aria/aria.js', ['goog.a11y.aria'], ['goog.a11y.aria.Role', 'goog.a11y.aria.State', 'goog.a11y.aria.datatables', 'goog.array', 'goog.asserts', 'goog.dom', 'goog.dom.TagName', 'goog.object', 'goog.string'], false);

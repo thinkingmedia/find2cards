@@ -41,7 +41,7 @@ gmMem.Directives.gmTimer = function($interval)
 		$scope.value = ~~$scope.value;
 		$interval(function()
 				  {
-					  $scope.value = $scope.value - 1 || 0;
+					  $scope.value = $scope.value == 0 ? 0 : $scope.value - 1;
 				  }, 1000);
 
 		$scope.$watch('value', function(value)

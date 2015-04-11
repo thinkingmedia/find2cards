@@ -1,0 +1,19 @@
+@import "../../Config";
+
+.gmPlayer {
+  $size: 64px;
+
+  display: block;
+  position: relative;
+  //border: 1px solid $border;
+  padding: $margin;
+  height: $size + $margin * 2;
+  margin: 0 0 $spacer 0;
+
+  font-size: $size / 2;
+}
+
+
+
+
+

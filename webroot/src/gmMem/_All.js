@@ -9,5 +9,4 @@ goog.require("gmMem.Controllers.All");
 goog.require("gmMem.Directives.All");
 
 goog.require("gmMem.gmConfig");
-goog.require("gmMem.gmPlayerLoader");
 

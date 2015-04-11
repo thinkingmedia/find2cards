@@ -1,3 +1,5 @@
 <div class="gmLobby">
-    <gm-player-loader ng-repeat="player in players track by $index"></gm-player-loader>
+    <div ng-repeat="player in players track by $index">
+        <gm-player-loader name="{{player.user.name}}" image="{{player.user.image}}" ready="{{player.ready}}"></gm-player-loader>
+    </div>
 </div>

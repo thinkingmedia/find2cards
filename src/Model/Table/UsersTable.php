@@ -40,8 +40,8 @@ class UsersTable extends Table
         $user = $this->newEntity([
                                      'name'         => $profile->displayName,
                                      'image'        => $profile->photoURL,
-                                     'provider'     => $provider,
-                                     'provider_uid' => $profile->identifier
+                                     'provider_uid' => $profile->identifier,
+                                     'provider'     => $provider
                                  ]);
         if (!$this->save($user))
         {
