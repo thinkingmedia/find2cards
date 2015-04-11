@@ -4,25 +4,25 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "318a7a3cd5cff25e1d9d9dcbdf6b6402",
+    "hash": "46e17124e661032c3bc6c22e16318390",
     "packages": [
         {
             "name": "admad/cakephp-hybridauth",
-            "version": "dev-cake3",
+            "version": "3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ADmad/CakePHP-HybridAuth.git",
-                "reference": "5c4e913cab64fbe185e9caf8aa605a4d73219970"
+                "reference": "b27127e25e100ac9954571058b1afb2e34a8efcf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ADmad/CakePHP-HybridAuth/zipball/5c4e913cab64fbe185e9caf8aa605a4d73219970",
-                "reference": "5c4e913cab64fbe185e9caf8aa605a4d73219970",
+                "url": "https://api.github.com/repos/ADmad/CakePHP-HybridAuth/zipball/b27127e25e100ac9954571058b1afb2e34a8efcf",
+                "reference": "b27127e25e100ac9954571058b1afb2e34a8efcf",
                 "shasum": ""
             },
             "require": {
                 "cakephp/cakephp": "~3.0",
-                "hybridauth/hybridauth": "2.3.*"
+                "hybridauth/hybridauth": "2.4.*"
             },
             "type": "cakephp-plugin",
             "autoload": {
@@ -42,7 +42,7 @@
                 "multi provider",
                 "social signon"
             ],
-            "time": "2015-03-29 18:09:26"
+            "time": "2015-04-10 15:34:13"
         },
         {
             "name": "aura/installer-default",
@@ -329,16 +329,16 @@
         },
         {
             "name": "hybridauth/hybridauth",
-            "version": "v2.3.0",
+            "version": "v2.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hybridauth/hybridauth.git",
-                "reference": "1b161fb779ce352592fc0499b9a89713623a8ae5"
+                "reference": "fef4c4429006b2bb96800ec92710b3523a20f893"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hybridauth/hybridauth/zipball/1b161fb779ce352592fc0499b9a89713623a8ae5",
-                "reference": "1b161fb779ce352592fc0499b9a89713623a8ae5",
+                "url": "https://api.github.com/repos/hybridauth/hybridauth/zipball/fef4c4429006b2bb96800ec92710b3523a20f893",
+                "reference": "fef4c4429006b2bb96800ec92710b3523a20f893",
                 "shasum": ""
             },
             "require": {
@@ -349,7 +349,10 @@
             "autoload": {
                 "psr-0": {
                     "Hybrid": "hybridauth/"
-                }
+                },
+                "classmap": [
+                    "hybridauth/Hybrid"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -374,7 +377,7 @@
                 "twitter",
                 "yahoo"
             ],
-            "time": "2014-11-16 17:11:52"
+            "time": "2015-04-02 18:35:53"
         },
         {
             "name": "ircmaxell/password-compat",
@@ -984,12 +987,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/thinkingmedia/phing.git",
-                "reference": "07788245d4ee8675a0cdf83096aeb302476406a6"
+                "reference": "50772a2990cc4abc5ba55542086e7f54e7e96088"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thinkingmedia/phing/zipball/07788245d4ee8675a0cdf83096aeb302476406a6",
-                "reference": "07788245d4ee8675a0cdf83096aeb302476406a6",
+                "url": "https://api.github.com/repos/thinkingmedia/phing/zipball/50772a2990cc4abc5ba55542086e7f54e7e96088",
+                "reference": "50772a2990cc4abc5ba55542086e7f54e7e96088",
                 "shasum": ""
             },
             "require": {
@@ -1013,7 +1016,7 @@
                 }
             ],
             "description": "A collection of custom tasks for Phing",
-            "time": "2015-04-09 22:16:11"
+            "time": "2015-04-09 23:31:16"
         },
         {
             "name": "thinkingmedia/underscore",
@@ -1415,7 +1418,6 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "thinkingmedia/phing": 20,
-        "admad/cakephp-hybridauth": 20,
         "psy/psysh": 0
     },
     "prefer-stable": true,
