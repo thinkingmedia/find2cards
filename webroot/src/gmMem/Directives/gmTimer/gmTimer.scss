@@ -1,0 +1,27 @@
+@import "../../Config";
+
+@import url(http://fonts.googleapis.com/css?family=Wallpoet);
+
+.gmTimer {
+  font-family: 'Wallpoet', cursive;
+  font-size: 5em;
+  line-height: 1em;
+
+  span {
+    display: inline-block;
+    background-color: $timer_bg;
+    color: $timer_color;
+    border: 1px solid $timer_border;
+    margin: 0.1em 0.05em;
+    width: 1em;
+    height: 1em;
+    text-align: center;
+    vertical-align: middle;
+
+    @include border-radius($radius, $radius);
+  }
+}
+
+
+
+

@@ -93,13 +93,10 @@ class LobbiesController extends AppController
         $this->viewClass = 'json';
         $game = $this->Games->get((int)$game_id);
 
-        $lobby = $this->Lobby->find()
-                             ->select(['user_id'])
-                             ->where(['game_id' => $game->id]);
-
-        $players = $this->Users->find()
-                               ->select(['id', 'name'])
-                               ->where(['id' => $lobby])
+        $players = $this->Lobby->find()
+                               ->contain('Users')
+                               ->select(['UsersGames.ready', 'Users.id', 'Users.name', 'Users.image'])
+                               ->where(['UsersGames.game_id' => $game->id])
                                ->all();
 
         $this->set('players', $players);

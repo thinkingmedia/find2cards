@@ -1,12 +1,11 @@
 <?php
 namespace App\Model\Entity;
 
-use Cake\ORM\Entity;
-
 /**
  * User Entity.
  *
  * @property string $name
+ * @property string $image
  * @property string $provider
  * @property string $provider_uid
  */
@@ -20,6 +19,7 @@ class User extends AppEntity
      */
     protected $_accessible = [
         'name'         => true,
+        'image'        => true,
         'provider'     => true,
         'provider_uid' => true,
     ];

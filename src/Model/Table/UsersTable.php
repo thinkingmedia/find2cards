@@ -25,7 +25,7 @@ class UsersTable extends Table
         $this->addBehavior('Timestamp');
 
         $this->belongsToMany('Games', [
-            'through'=>'UsersGames'
+            'through' => 'UsersGames'
         ]);
     }
 
@@ -39,13 +39,15 @@ class UsersTable extends Table
     {
         $user = $this->newEntity([
                                      'name'         => $profile->displayName,
+                                     'image'        => $profile->photoURL,
                                      'provider'     => $provider,
                                      'provider_uid' => $profile->identifier
                                  ]);
-        if(!$this->save($user))
+        if (!$this->save($user))
         {
             Log::write(LOG_ERR, 'Failed to create new user record');
         }
+
         return true;
     }
 

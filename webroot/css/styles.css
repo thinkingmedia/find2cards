@@ -1,3 +1,60 @@
+/** Import package wide styles here. **/
+/*
+ * A partial implementation of the Ruby list functions from Compass:
+ * https://github.com/Compass/compass/blob/stable/lib/compass/sass_extensions/functions/lists.rb
+ */
+/*
+ * A partial implementation of the Ruby constants functions from Compass:
+ * https://github.com/Compass/compass/blob/stable/lib/compass/sass_extensions/functions/constants.rb
+ */
+/*
+ * A partial implementation of the Ruby display functions from Compass:
+ * https://github.com/Compass/compass/blob/stable/core/lib/compass/core/sass_extensions/functions/display.rb
+ */
+/*
+ * A partial implementation of the Ruby list functions from Compass:
+ * https://github.com/Compass/compass/blob/stable/lib/compass/sass_extensions/functions/lists.rb
+ */
+/*
+ * A partial implementation of the Ruby constants functions from Compass:
+ * https://github.com/Compass/compass/blob/stable/lib/compass/sass_extensions/functions/constants.rb
+ */
+/*
+ * A partial implementation of the Ruby display functions from Compass:
+ * https://github.com/Compass/compass/blob/stable/core/lib/compass/core/sass_extensions/functions/display.rb
+ */
+@import url(http://fonts.googleapis.com/css?family=Wallpoet);
+.gmTimer {
+  font-family: 'Wallpoet', cursive;
+  font-size: 5em;
+  line-height: 1em; }
+  .gmTimer span {
+    display: inline-block;
+    background-color: #666;
+    color: #fff;
+    border: 1px solid #333;
+    margin: 0.1em 0.05em;
+    width: 1em;
+    height: 1em;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-border-radius: first-value-of(10px) first-value-of(10px);
+    -moz-border-radius: 10px / 10px;
+    border-radius: 10px / 10px; }
+
+/** Import package wide styles here. **/
+/*
+ * A partial implementation of the Ruby list functions from Compass:
+ * https://github.com/Compass/compass/blob/stable/lib/compass/sass_extensions/functions/lists.rb
+ */
+/*
+ * A partial implementation of the Ruby constants functions from Compass:
+ * https://github.com/Compass/compass/blob/stable/lib/compass/sass_extensions/functions/constants.rb
+ */
+/*
+ * A partial implementation of the Ruby display functions from Compass:
+ * https://github.com/Compass/compass/blob/stable/core/lib/compass/core/sass_extensions/functions/display.rb
+ */
 .gmPlayerLoader {
   display: block;
   position: relative;
@@ -24,11 +81,19 @@
     margin-top: 10px;
     height: 44px; }
 
-.gmSignIn {
-  max-width: 260px;
-  margin: 0 auto; }
-
 /** Import package wide styles here. **/
+/*
+ * A partial implementation of the Ruby list functions from Compass:
+ * https://github.com/Compass/compass/blob/stable/lib/compass/sass_extensions/functions/lists.rb
+ */
+/*
+ * A partial implementation of the Ruby constants functions from Compass:
+ * https://github.com/Compass/compass/blob/stable/lib/compass/sass_extensions/functions/constants.rb
+ */
+/*
+ * A partial implementation of the Ruby display functions from Compass:
+ * https://github.com/Compass/compass/blob/stable/core/lib/compass/core/sass_extensions/functions/display.rb
+ */
 body {
   padding-top: 60px; }
 
