@@ -13,7 +13,7 @@
     </div>
     <div class="col-md-6">
         <div class="gmSignIn">
-            <?= $this->Html->link(__('Play'), ['controller' => 'match_making', 'action' => 'join'],
+            <?= $this->Html->link(__('Play'), ['controller' => 'lobbies', 'action' => 'join'],
                                   ['class' => 'btn btn-primary btn-block']) ?>
             <?= $this->Html->link(__('Stats'), ['controller' => 'games', 'action' => 'stats'],
                                   ['class' => 'btn btn-default btn-block']) ?>

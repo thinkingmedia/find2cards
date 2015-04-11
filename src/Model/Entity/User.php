@@ -10,7 +10,7 @@ use Cake\ORM\Entity;
  * @property string $provider
  * @property string $provider_uid
  */
-class User extends Entity
+class User extends AppEntity
 {
 
     /**

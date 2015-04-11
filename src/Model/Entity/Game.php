@@ -9,7 +9,7 @@ use Cake\ORM\Entity;
  * @property boolean $match_making
  * @property boolean $finished
  */
-class Game extends Entity
+class Game extends AppEntity
 {
 
     /**

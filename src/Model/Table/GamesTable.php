@@ -83,6 +83,8 @@ class GamesTable extends Table
          */
         $UsersGames = TableRegistry::get('UsersGames');
         $UsersGames->create($user_id, $game->id);
+
+        return $game;
     }
 
     /**

@@ -2,18 +2,21 @@
 
 namespace App\Controller;
 
-use Cake\Network\Exception\BadRequestException;
-use Cake\ORM\TableRegistry;
+use Cake\Network\Exception\NotFoundException;
 
 /**
  * @property \App\Model\Table\GamesTable $Games
  */
-class MatchMakingController extends AppController
+class LobbiesController extends AppController
 {
+    /**
+     * Loads the games table.
+     */
     public function initialize()
     {
         parent::initialize();
-        $this->Games = TableRegistry::get('Games');
+
+        $this->Games = $this->loadModel('Games');
     }
 
     /**
@@ -22,26 +25,19 @@ class MatchMakingController extends AppController
      */
     public function join()
     {
-        $game = $this->Games->playing($this->user_id);
-        if (!$game)
-        {
-            $this->Games->join($this->user_id);
-        }
-        $this->redirect(['action' => 'lobby']);
+        $game = $this->Games->join($this->user_id);
+        $this->redirect(['action' => 'show', $game->id]);
     }
 
     /**
      * This displays the match making screen for a game. The user waits
      * here while other players join the game.
+     *
+     * @param int $game_id
      */
-    public function lobby()
+    public function show($game_id = null)
     {
-        $game = $this->Games->playing($this->user_id);
-        if(!$game)
-        {
-            throw new BadRequestException('Player is not part of any game.');
-        }
-
+        $game = $this->Games->get((int)$game_id);
         if (!$game->match_making)
         {
             $this->redirect(['controller' => 'games', 'action' => 'play']);
