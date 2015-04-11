@@ -25,13 +25,14 @@ DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(80) NOT NULL,
+  `image` varchar(512) DEFAULT NULL,
   `provider` varchar(100) NOT NULL,
   `provider_uid` varchar(200) NOT NULL,
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `providers` (`provider`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +41,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (10,'Mathew Foscarini','Facebook','10153816709668266','2015-04-10 23:14:57','2015-04-10 23:14:57');
+INSERT INTO `users` VALUES (11,'Mathew Foscarini','https://graph.facebook.com/10153816709668266/picture?width=150&height=150','Facebook','10153816709668266','2015-04-11 04:14:29','2015-04-11 04:14:29');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-04-10 19:24:31
+-- Dump completed on 2015-04-11  1:31:33

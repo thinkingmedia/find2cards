@@ -25,6 +25,7 @@ DROP TABLE IF EXISTS `users_games`;
 CREATE TABLE `users_games` (
   `user_id` int(10) unsigned NOT NULL,
   `game_id` int(10) unsigned NOT NULL,
+  `ready` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `created` datetime NOT NULL,
   PRIMARY KEY (`user_id`,`game_id`),
   KEY `join_users_idx` (`user_id`),
@@ -40,7 +41,7 @@ CREATE TABLE `users_games` (
 
 LOCK TABLES `users_games` WRITE;
 /*!40000 ALTER TABLE `users_games` DISABLE KEYS */;
-INSERT INTO `users_games` VALUES (10,17,'2015-04-10 23:20:01');
+INSERT INTO `users_games` VALUES (11,19,0,'2015-04-11 04:14:47');
 /*!40000 ALTER TABLE `users_games` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-04-10 19:24:31
+-- Dump completed on 2015-04-11  1:31:33
