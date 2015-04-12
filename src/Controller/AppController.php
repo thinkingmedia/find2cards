@@ -12,14 +12,57 @@ use Cake\Event\Event;
 class AppController extends Controller
 {
     /**
-     * @var int The current user.
-     */
-    protected $user_id;
-
-    /**
      * @var array Magic loading models.
      */
     public $use = [];
+
+    /**
+     * @var int|null The current user.
+     */
+    protected $user_id = null;
+
+    /**
+     * @var \App\Model\Entity\User|null The current user
+     */
+    protected $user;
+
+    /**
+     * Handles magic loading of models.
+     *
+     * @param string $name
+     *
+     * @return bool|object
+     */
+    public function __get($name)
+    {
+        if (in_array($name, $this->use))
+        {
+            return $this->loadModel($name);
+        }
+        if (isset($this->use[$name]))
+        {
+            return $this->loadModel($this->use[$name]);
+        }
+
+        return parent::__get($name);
+    }
+
+    /**
+     * @param Event $event
+     */
+    public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter($event);
+
+        $this->user = $this->Auth->user();
+        if ($this->user)
+        {
+            $this->user_id = (int)$this->Auth->user('id');
+
+            $this->set('user', $this->user);
+            $this->set('user_id', $this->user);
+        }
+    }
 
     /**
      * Configure components.
@@ -53,33 +96,27 @@ class AppController extends Controller
     }
 
     /**
-     * @param Event $event
-     */
-    public function beforeFilter(Event $event)
-    {
-        parent::beforeFilter($event);
-
-        $this->user_id = (int)$this->Auth->user('id');
-    }
-
-    /**
-     * Handles magic loading of models.
+     * Will send data as JSON or a request response. The data must be key/value pairs.
      *
-     * @param string $name
+     * @param array $data
      *
-     * @return bool|object
+     * @return array|null
      */
-    public function __get($name)
+    protected function send(array $data)
     {
-        if (in_array($name, $this->use))
+        if ($this->request->is('requested'))
         {
-            return $this->loadModel($name);
-        }
-        if (isset($this->use[$name]))
-        {
-            return $this->loadModel($this->use[$name]);
+            return $data;
         }
 
-        return parent::__get($name);
+        $this->RequestHandler->respondAs('json');
+        $this->viewClass = 'Json';
+        foreach ($data as $key => $value)
+        {
+            $this->set($key, $value);
+        }
+        $this->set('_serialize', array_keys($data));
+
+        return null;
     }
 }
