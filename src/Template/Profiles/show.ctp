@@ -5,8 +5,8 @@
 ?>
 <div class="row">
     <div class="col-md-4">
-        <gm-player image="<?= $user->image ?>" value="0" user="<?= $user->id ?>"></gm-player>
-        <h3><?= $user->name ?></h3>
+        <gm-player image="<?= $user['image'] ?>" value="0" user="<?= $user['id'] ?>"></gm-player>
+        <h3><?= $user['name'] ?></h3>
 
         <h1><?= __('Instructions') ?></h1>
 

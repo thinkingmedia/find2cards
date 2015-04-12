@@ -23,9 +23,6 @@ $scripts = [
     </title>
     <?= $this->Html->meta('icon') ?>
 
-    <?php // $this->Html->css('base.css') ?>
-    <?php //$this->Html->css('cake.css') ?>
-
     <?= $this->Html->css('/bower/normalize.css/normalize.css') ?>
     <?= $this->Html->css('/bower/bootstrap/dist/css/bootstrap.min.css') ?>
     <?= $this->Html->css('/bower/fontawesome/css/font-awesome.min.css') ?>

@@ -329,16 +329,16 @@
         },
         {
             "name": "hybridauth/hybridauth",
-            "version": "v2.4.0",
+            "version": "v2.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hybridauth/hybridauth.git",
-                "reference": "fef4c4429006b2bb96800ec92710b3523a20f893"
+                "reference": "89e4dc3da3a55cf3ffb00a428c247ff2166dc7ca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hybridauth/hybridauth/zipball/fef4c4429006b2bb96800ec92710b3523a20f893",
-                "reference": "fef4c4429006b2bb96800ec92710b3523a20f893",
+                "url": "https://api.github.com/repos/hybridauth/hybridauth/zipball/89e4dc3da3a55cf3ffb00a428c247ff2166dc7ca",
+                "reference": "89e4dc3da3a55cf3ffb00a428c247ff2166dc7ca",
                 "shasum": ""
             },
             "require": {
@@ -377,7 +377,7 @@
                 "twitter",
                 "yahoo"
             ],
-            "time": "2015-04-02 18:35:53"
+            "time": "2015-04-12 01:39:53"
         },
         {
             "name": "ircmaxell/password-compat",

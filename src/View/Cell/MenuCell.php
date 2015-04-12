@@ -13,21 +13,19 @@ class MenuCell extends Cell
      */
     public function user($user)
     {
+        //pr($user);
         $this->template = 'display';
         $menu = [];
-        if ($user)
-        {
-            $menu[] = [
-                'title'   => $user->name,
-                'url'     => ['controller' => 'profiles', 'action' => 'show', $user->id],
-                'options' => []
-            ];
-            $menu[] = [
-                'title'   => 'Sign Out',
-                'url'     => ['controller' => 'users', 'action' => 'logout'],
-                'options' => []
-            ];
-        }
+        $menu[] = [
+            'title'   => $user['name'],
+            'url'     => ['controller' => 'profiles', 'action' => 'show', $user['id']],
+            'options' => []
+        ];
+        $menu[] = [
+            'title'   => 'Sign Out',
+            'url'     => ['controller' => 'users', 'action' => 'logout'],
+            'options' => []
+        ];
         $this->set('menu', $menu);
     }
 

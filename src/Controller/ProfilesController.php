@@ -27,6 +27,5 @@ class ProfilesController extends AppController
      */
     public function show($user_id = null)
     {
-        $this->set('user',$this->Users->get($user_id));
     }
 }

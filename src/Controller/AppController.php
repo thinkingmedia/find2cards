@@ -59,8 +59,11 @@ class AppController extends Controller
         {
             $this->user_id = (int)$this->Auth->user('id');
 
-            $this->set('user', $this->user);
-            $this->set('user_id', $this->user);
+            if (!$this->request->is('ajax'))
+            {
+                $this->set('user', $this->user);
+                $this->set('user_id', $this->user);
+            }
         }
     }
 

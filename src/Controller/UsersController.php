@@ -39,7 +39,7 @@ class UsersController extends AppController
 
         $this->request->data = [
             'provider'    => $type,
-            'openid_identifier' => 'http://memory.thinkingmedia.local'
+            'openid_identifier' => 'http://'.Configure::read('face2cards.Domain')
         ];
 
         $user = $this->Auth->identify();

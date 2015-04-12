@@ -24,7 +24,7 @@ class HomeController extends AppController
      */
     public function index()
     {
-        if (!empty($this->Auth->user()))
+        if (!empty($this->user))
         {
             $this->redirect(['controller' => 'profiles','action'=>'show',$this->user_id]);
         }

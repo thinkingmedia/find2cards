@@ -19,8 +19,7 @@ if (isset($facebook_id) && isset($facebook_secret))
         "keys"    => array("id" => $facebook_id, "secret" => $facebook_secret),
         "scope"   => "public_profile",
         "color"   => "#3b5998",
-        "icon"    => "fa fa-facebook fa-lg"
-        //"scope"   => "email, user_about_me, user_birthday, user_hometown"
+        "icon"    => "fa fa-facebook-square fa-lg"
     ];
 }
 
@@ -31,6 +30,28 @@ if (isset($google_id) && isset($google_secret))
         "keys"    => array("id" => $google_id, "secret" => $google_secret),
         "scope"   => "profile",
         "color"   => "#dd4b39",
-        "icon"    => "fa fa-google-plus fa-lg"
+        "icon"    => "fa fa-google-plus-square fa-lg"
+    ];
+}
+
+if (isset($linkedin_id) && isset($linkedin_secret))
+{
+    $config['HybridAuth']['providers']['LinkedIn'] = [
+        "enabled" => true,
+        "keys"    => array("key" => $linkedin_id, "secret" => $linkedin_secret),
+        "scope"   => "profile",
+        "color"   => "#4875B4",
+        "icon"    => "fa fa-linkedin-square fa-lg"
+    ];
+}
+
+if (isset($twitter_id) && isset($twitter_secret))
+{
+    $config['HybridAuth']['providers']['Twitter'] = [
+        "enabled" => true,
+        "keys"    => array("id" => $twitter_id, "secret" => $twitter_secret),
+        "scope"   => "profile",
+        "color"   => "#33CCFF",
+        "icon"    => "fa fa-twitter-square fa-lg"
     ];
 }

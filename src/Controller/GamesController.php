@@ -2,8 +2,6 @@
 
 namespace App\Controller;
 
-use Cake\Event\Event;
-
 /**
  * Games Controller
  *
@@ -67,17 +65,16 @@ class GamesController extends AppController
                              ->all();
 
         $this->set('cards', $cards);
-        $this->set('user_id', $this->user_id);
         $this->set('game_id', $game_id);
     }
 
     /**
-     * @param int $game_id
+     * @param int|null $game_id
+     *
+     * @return array|null
      */
     public function update($game_id = null)
     {
-        $this->RequestHandler->respondAs('json');
-        $this->viewClass = 'Json';
         $game = $this->Games->get((int)$game_id);
 
         $players = $this->Lobby->find()
@@ -87,8 +84,9 @@ class GamesController extends AppController
                                ->order(['UsersGames.created' => 'DESC'])
                                ->all();
 
-        $this->set('players', $players);
-        $this->set('finished', false);
-        $this->set('_serialize', ["players", "finished"]);
+        return $this->send([
+                               'players'  => $players,
+                               'finished' => false
+                           ]);
     }
 }

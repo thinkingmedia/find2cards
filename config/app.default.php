@@ -6,7 +6,8 @@ return [
      * Customize the branding of the app.
      */
     'find2cards'     => [
-        'AppName' => 'Find2Cards'
+        'AppName' => 'Find2Cards',
+        'Domain'  => 'www.find2cards.com'
     ],
     /**
      * Debug Level:

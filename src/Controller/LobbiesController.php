@@ -48,7 +48,6 @@ class LobbiesController extends AppController
      */
     public function leave($game_id = null)
     {
-        $game = $this->Games->get((int)$game_id);
         $record = $this->Lobby->get([$this->user_id, $game_id]);
         $this->Lobby->delete($record);
 
@@ -60,11 +59,11 @@ class LobbiesController extends AppController
      * User toggles their ready state.
      *
      * @param int|null $game_id
+     *
+     * @return array|null
      */
     public function ready($game_id = null)
     {
-        $this->RequestHandler->respondAs('json');
-        $this->viewClass = 'Json';
         $game = $this->Games->get((int)$game_id);
 
         $player = $this->Lobby->get([$this->user_id, $game_id]);
@@ -72,19 +71,20 @@ class LobbiesController extends AppController
 
         $this->Lobby->save($player);
 
-        $this->set('game_id', $game->id);
-        $this->set('_serialize', ['game_id']);
+        return $this->send([
+                               'game_id' => $game->id
+                           ]);
     }
 
     /**
      * User toggles their ready state.
      *
      * @param int|null $game_id
+     *
+     * @return array|null
      */
     public function unready($game_id = null)
     {
-        $this->RequestHandler->respondAs('json');
-        $this->viewClass = 'Json';
         $game = $this->Games->get((int)$game_id);
 
         $player = $this->Lobby->get([$this->user_id, $game_id]);
@@ -92,19 +92,20 @@ class LobbiesController extends AppController
 
         $this->Lobby->save($player);
 
-        $this->set('game_id', $game->id);
-        $this->set('_serialize', ['game_id']);
+        return $this->send([
+                               'game_id' => $game->id
+                           ]);
     }
 
     /**
      * Get a list of players and their ready status.
      *
      * @param int|null $game_id
+     *
+     * @return array|null
      */
     public function update($game_id = null)
     {
-        $this->RequestHandler->respondAs('json');
-        $this->viewClass = 'Json';
         $game = $this->Games->get((int)$game_id);
 
         $players = $this->Lobby->find()
@@ -114,8 +115,9 @@ class LobbiesController extends AppController
                                ->order(['UsersGames.created' => 'DESC'])
                                ->all();
 
-        $this->set('players', $players);
-        $this->set('starts', $game->starts);
-        $this->set('_serialize', ["players", "starts"]);
+        return $this->send([
+                               'players' => $players,
+                               'starts'  => $game->starts
+                           ]);
     }
 }
