@@ -26,14 +26,7 @@ class HomeController extends AppController
     {
         if (!empty($this->Auth->user()))
         {
-            $this->redirect(['action' => 'session']);
+            $this->redirect(['controller' => 'profiles','action'=>'show',$this->user_id]);
         }
-    }
-
-    /**
-     * This is the home page for a user that is logged in.
-     */
-    public function session()
-    {
     }
 }

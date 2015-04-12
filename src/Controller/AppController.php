@@ -17,6 +17,11 @@ class AppController extends Controller
     protected $user_id;
 
     /**
+     * @var array Magic loading models.
+     */
+    public $use = [];
+
+    /**
      * Configure components.
      */
     public function initialize()
@@ -25,8 +30,8 @@ class AppController extends Controller
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Auth', [
             'loginRedirect'  => [
-                'controller' => 'home',
-                'action'     => 'session',
+                'controller' => 'profiles',
+                'action'     => 'go',
                 'plugin'     => false
             ],
             'loginAction'    => [
@@ -55,5 +60,26 @@ class AppController extends Controller
         parent::beforeFilter($event);
 
         $this->user_id = (int)$this->Auth->user('id');
+    }
+
+    /**
+     * Handles magic loading of models.
+     *
+     * @param string $name
+     *
+     * @return bool|object
+     */
+    public function __get($name)
+    {
+        if (in_array($name, $this->use))
+        {
+            return $this->loadModel($name);
+        }
+        if (isset($this->use[$name]))
+        {
+            return $this->loadModel($this->use[$name]);
+        }
+
+        return parent::__get($name);
     }
 }

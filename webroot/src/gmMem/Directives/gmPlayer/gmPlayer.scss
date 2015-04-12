@@ -1,5 +1,9 @@
 @import "../../Config";
 
+gm-player {
+  display: inline-block
+}
+
 .gmPlayer {
   $size: 64px;
   $frame: 8px;

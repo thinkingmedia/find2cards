@@ -12,6 +12,11 @@ Router::connect('/users/login/:type', [
     'action'     => 'login'
 ], ['pass' => ['type']]);
 
+Router::connect('/profiles/:id', [
+    'controller' => 'profiles',
+    'action'     => 'show'
+], ['id' => '\d+', 'pass' => ['id']]);
+
 Router::connect('/:controller', ['action' => 'index']);
 Router::connect('/:controller/:action/:id', [], ['id' => '\d+', 'pass' => ['id']]);
 Router::connect('/:controller/:action', []);

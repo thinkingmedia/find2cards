@@ -14,17 +14,7 @@ use Cake\Event\Event;
  */
 class GamesController extends AppController
 {
-    /**
-     * @param Event $event
-     */
-    public function beforeFilter(Event $event)
-    {
-        parent::beforeFilter($event);
-
-        $this->UsersGames = $this->loadModel('UsersGames');
-        $this->Cards = $this->loadModel('Cards');
-        $this->Lobby = $this->loadModel('UsersGames');
-    }
+    public $use = ['Games', 'UsersGames', 'Cards', 'Lobby' => 'UsersGames'];
 
     /**
      * @param {int} $game_id
@@ -99,6 +89,6 @@ class GamesController extends AppController
 
         $this->set('players', $players);
         $this->set('finished', false);
-        $this->set('_serialize', ["players","finished"]);
+        $this->set('_serialize', ["players", "finished"]);
     }
 }

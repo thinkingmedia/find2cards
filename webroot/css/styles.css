@@ -100,6 +100,9 @@
  * A partial implementation of the Ruby display functions from Compass:
  * https://github.com/Compass/compass/blob/stable/core/lib/compass/core/sass_extensions/functions/display.rb
  */
+gm-player {
+  display: inline-block; }
+
 .gmPlayer {
   display: block;
   position: relative;

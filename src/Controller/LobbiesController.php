@@ -10,16 +10,9 @@ namespace App\Controller;
 class LobbiesController extends AppController
 {
     /**
-     * Loads the games table.
+     * @var array Models
      */
-    public function initialize()
-    {
-        parent::initialize();
-
-        $this->Games = $this->loadModel('Games');
-        $this->Lobby = $this->loadModel('UsersGames');
-        $this->Users = $this->loadModel('Users');
-    }
+    public $use = ['Games', 'Lobby' => 'UsersGames', 'Users'];
 
     /**
      * Find a new game for the player and redirect them
@@ -123,6 +116,6 @@ class LobbiesController extends AppController
 
         $this->set('players', $players);
         $this->set('starts', $game->starts);
-        $this->set('_serialize', ["players","starts"]);
+        $this->set('_serialize', ["players", "starts"]);
     }
 }

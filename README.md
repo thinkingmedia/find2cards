@@ -39,3 +39,11 @@ This project requires the following to work.
 - The Apache2 mod_rewrite module must be enabled.
 - PHP must have `intl` installed `sudo apt-get install php5-intl`
 - If you don't have access to MySQL root user. See the `sql/create.sql` as a guide for creating the database.
+
+# Database
+
+This project uses MySQL constraints and triggers to ensure data integrity. As such, exporting and importing the database schema must be done with the proper database user account.
+
+Use the `'find2cards'@'localhost'` identifier to make changes to the database schema. Otherwise the `export.sh` script will create SQL files that won't import on other servers. (*i.e. don't make changes using root*).
+
+If you are using MySQL WorkBench. Create a new connection using the `'find2cards'@'localhost'` user and set the `find2cards` schema as the default. Using this connection to modify the database will ensure that SQL dumps contain the correct permissions for that user account on other servers. 
