@@ -1,6 +1,6 @@
 #!/bin/bash
-for file in data/*.sql
+for file in tables/*.sql
 do
     echo "Importing ${file}"
-    mysql --user=memory --password="ghdqbUEo3svfQ8qTObPr" memory < $file
+    mysql --user=find2cards --password="ghdqbUEo3svfQ8qTObPr" find2cards < $file
 done

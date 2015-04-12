@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.6.19, for Win64 (x86_64)
 --
--- Host: localhost    Database: memory
+-- Host: localhost    Database: find2cards
 -- ------------------------------------------------------
 -- Server version	5.6.19-log
 
@@ -34,17 +34,8 @@ CREATE TABLE `cards` (
   KEY `order` (`order`),
   CONSTRAINT `cards_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `cards_games` FOREIGN KEY (`game_id`) REFERENCES `games` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=553 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=577 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `cards`
---
-
-LOCK TABLES `cards` WRITE;
-/*!40000 ALTER TABLE `cards` DISABLE KEYS */;
-/*!40000 ALTER TABLE `cards` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -55,4 +46,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-04-11 13:25:14
+-- Dump completed on 2015-04-12 11:04:25
