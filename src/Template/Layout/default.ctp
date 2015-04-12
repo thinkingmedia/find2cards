@@ -38,8 +38,8 @@ $scripts = [
 <div class="container">
     <?= $this->Flash->render() ?>
     <?= $this->Flash->render('auth'); ?>
-    <?= $this->fetch('content') ?>
 </div>
+<?= $this->fetch('content') ?>
 
 <?php
 foreach ($scripts as $script)

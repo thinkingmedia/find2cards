@@ -4,4 +4,6 @@
  * @var int $user_id
  */
 ?>
-<gm-lobby game="<?= $game->id ?>" interval="2000" player="<?= $user_id ?>"></gm-lobby>
+<div class="container">
+    <gm-lobby game="<?= $game->id ?>" interval="2000" player="<?= $user_id ?>"></gm-lobby>
+</div>
