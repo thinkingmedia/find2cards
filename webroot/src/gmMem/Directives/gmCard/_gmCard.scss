@@ -3,10 +3,10 @@
 gm-card {
   display: block;
   position: absolute;
-  cursor: pointer;
   margin: 5px;
-  @include user-select(none);
+  cursor: default;
 
+  @include user-select(none);
   @include flippy(0.3s, 350px);
 
   &.flip {
@@ -17,12 +17,24 @@ gm-card {
     text-align: center;
     vertical-align: middle;
     color: $score;
+
+    @include transition((all 1.0s ease-in-out));
+    &.found {
+      @include transform(scale(1.2));
+      opacity: 0;
+    }
   }
 
   .front {
     border: 2px solid $border;
     background-color: #aaa;
+    cursor: pointer;
     @include border-radius(10px);
+
+    &.found {
+      @include transform(scale(1.2));
+      opacity: 0;
+    }
   }
 
   .back {
@@ -32,7 +44,13 @@ gm-card {
     text-align: center;
     vertical-align: middle;
     @include border-radius(10px);
+
+    &.found {
+      @include transform(scale(1.2));
+      opacity: 0;
+    }
   }
+
 }
 
 

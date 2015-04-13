@@ -75,7 +75,7 @@ class GamesController extends AppController
         $cards = [];
         for ($i = 0; $i < 24; $i++)
         {
-            $cards[] = [
+            $cards['card-'.$i] = [
                 'id'=>$i,
                 'type'=>$data[$i]
             ];

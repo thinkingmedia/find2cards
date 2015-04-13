@@ -17,6 +17,7 @@ goog.require('gmMem.Directives');
  * @property {number} card_height
  * @property {number} rows
  * @property {number} columns
+ * @property {number} bonus
  */
 
 /**
@@ -39,7 +40,9 @@ gmMem.Directives.gmGameCtrl = function($scope, $http, $timeout, cards)
 	this._$scope.state = 'loading';
 	this._$scope.players = [];
 	this._$scope.cards = cards;
+	this._$scope.bonus = 0;
 
+	this.bonus_step = 10;
 	this.flipped = [];
 };
 
@@ -108,19 +111,34 @@ gmMem.Directives.gmGameCtrl.prototype.shown = function(card_id)
 	this.flipped.push(card_id);
 	if(this.flipped.length == 2)
 	{
-		this.match(this.flipped[0],this.flipped[1]);
+		var score = this.match(this.flipped[0],this.flipped[1]);
 		var reset = this.flipped;
 		this._$timeout(function()
 					   {
-						   this._$scope.$broadcast(gmMem.Directives.gmGameCtrl.RESET,reset[0]);
-						   this._$scope.$broadcast(gmMem.Directives.gmGameCtrl.RESET,reset[1]);
-					   }.bind(this),1000);
+						   this._$scope.$broadcast(gmMem.Directives.gmGameCtrl.RESET,reset[0],score);
+						   this._$scope.$broadcast(gmMem.Directives.gmGameCtrl.RESET,reset[1],score);
+					   }.bind(this),score == 0 ? 500 : 0);
 		this.flipped = [];
 	}
 };
 
+/**
+ * Performs the match logic for two cards.
+ * @param {number} card_a
+ * @param {number} card_b
+ * @returns {number}
+ */
 gmMem.Directives.gmGameCtrl.prototype.match = function(card_a, card_b)
 {
+	if(this._$scope.cards['card-'+card_a].type == this._$scope.cards['card-'+card_b].type)
+	{
+		this._$scope.bonus += this.bonus_step;
+	}
+	else
+	{
+		this._$scope.bonus = 0;
+	}
+	return this._$scope.bonus;
 };
 
 /**

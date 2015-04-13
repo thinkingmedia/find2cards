@@ -52,8 +52,8 @@ gmMem.Directives.gmCard = function()
 					});
 
 			var font = {
-				'font-size':   ~~(size[1] * 0.8) + 'px',
-				'line-height': ~~(size[1] * 0.8) + 'px'
+				'font-size':   ~~(size[1] * 0.7) + 'px',
+				'line-height': size[1] + 'px'
 			};
 
 			$score.css(font);
@@ -74,11 +74,12 @@ gmMem.Directives.gmCard = function()
 							  });
 			}
 		});
-		$scope.$on(gmMem.Directives.gmGameCtrl.RESET, function(event, id)
+		$scope.$on(gmMem.Directives.gmGameCtrl.RESET, function(event, id, score)
 		{
 			if(id == $scope.data.id)
 			{
-				$scope.visible = false;
+				$scope.score = score;
+				$scope.visible = !!score;
 			}
 		});
 	}
