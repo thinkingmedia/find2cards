@@ -4,6 +4,8 @@ CREATE TABLE `users_games` (
   `user_id` int(10) unsigned NOT NULL,
   `game_id` int(10) unsigned NOT NULL,
   `ready` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `score` int(10) unsigned NOT NULL DEFAULT '0',
+  `matches` int(10) unsigned NOT NULL DEFAULT '0',
   `started` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `created` datetime NOT NULL,
   PRIMARY KEY (`user_id`,`game_id`),
@@ -44,12 +46,27 @@ DELIMITER ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50017 DEFINER=`find2cards`@`localhost`*/ /*!50003 TRIGGER `users_games_AUPD` AFTER UPDATE ON `users_games` FOR EACH ROW
 BEGIN
+	/**
+     * Is this player ready to play?
+     */
 	IF NEW.`ready` = 1 THEN
-		SET	@count = (SELECT COUNT(*) FROM `users_games` WHERE `game_id` = OLD.`game_id` AND `ready` = 0);
-		IF @count = 0 THEN
-			CALL SetGameTimer(NEW.`game_id`,10);
+        /**
+         * Are all players ready to play?
+         */
+		SET	@not_ready = (SELECT COUNT(*) FROM `users_games` WHERE `game_id` = OLD.`game_id` AND `ready` = 0);
+		IF @not_ready = 0 THEN
+            /** Skip 10 seconds timer if 1 player in lobby. **/
+			SET	@players = (SELECT COUNT(*) FROM `users_games` WHERE `game_id` = OLD.`game_id`);
+			IF @players = 1 THEN
+				CALL SetGameTimer(NEW.`game_id`,0);
+			ELSE
+				CALL SetGameTimer(NEW.`game_id`,10);
+			END IF;
 		END IF;
 	END IF;
+    /**
+     * Reset timer everytime a player joins or is not ready.
+     */
 	IF NEW.`ready` = 0 THEN
 		CALL SetGameTimer(NEW.`game_id`,60);
 	END IF;

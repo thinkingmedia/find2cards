@@ -10,5 +10,5 @@ CREATE TABLE `users` (
   `modified` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `providers` (`provider`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
