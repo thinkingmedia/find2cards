@@ -26,8 +26,7 @@
                                   ['class' => 'btn btn-primary btn-block']) ?>
         </div>
         <div class="col-md-4">
-
-            <h1>Finished Games Here</h1>
-        </div>
+<!--            <h1>Finished Games Here</h1>
+-->        </div>
     </div>
 </div>

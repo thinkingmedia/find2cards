@@ -52,7 +52,7 @@ class LobbiesController extends AppController
         $this->Lobby->delete($record);
 
         $this->Flash->info('You are no longer waiting to play.');
-        $this->redirect(['controller' => 'home', 'action' => 'session']);
+        $this->redirect(['controller' => 'profiles', 'action' => 'go']);
     }
 
     /**

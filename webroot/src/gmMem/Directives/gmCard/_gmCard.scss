@@ -3,7 +3,7 @@
 gm-card {
   display: block;
   position: absolute;
-  margin: 5px;
+  //margin: 5px;
   cursor: default;
 
   @include user-select(none);

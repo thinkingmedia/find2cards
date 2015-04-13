@@ -17,6 +17,16 @@ Router::connect('/profiles/:id', [
     'action'     => 'show'
 ], ['id' => '\d+', 'pass' => ['id']]);
 
+Router::connect('/games/update/:id/:score/:matches', [
+    'controller' => 'games',
+    'action'     => 'update'
+], [
+                    'id'    => '\d+',
+                    'score' => '\d+',
+                    'matches' => '\d+',
+                    'pass'  => ['id', 'score', 'matches']
+                ]);
+
 Router::connect('/:controller', ['action' => 'index']);
 Router::connect('/:controller/:action/:id', [], ['id' => '\d+', 'pass' => ['id']]);
 Router::connect('/:controller/:action', []);

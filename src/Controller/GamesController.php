@@ -87,16 +87,23 @@ class GamesController extends AppController
 
     /**
      * @param int|null $game_id
+     * @param int|null $score
+     * @param int|null $matches
      *
      * @return array|null
      */
-    public function update($game_id = null)
+    public function update($game_id = null, $score = null, $matches = null)
     {
         $game = $this->Games->get((int)$game_id);
+        $player = $this->UsersGames->get([$this->user_id, $game_id]);
+
+        $player->score = $score;
+        $player->matches = $matches;
+        $this->Lobby->save($player);
 
         $players = $this->Lobby->find()
                                ->contain('Users')
-                               ->select(['UsersGames.ready', 'Users.id', 'Users.name', 'Users.image'])
+                               ->select(['UsersGames.ready', 'UsersGames.score', 'UsersGames.matches', 'Users.id', 'Users.name', 'Users.image'])
                                ->where(['UsersGames.game_id' => $game_id])
                                ->order(['UsersGames.created' => 'DESC'])
                                ->all();
