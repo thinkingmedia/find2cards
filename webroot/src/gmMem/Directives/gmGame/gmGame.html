@@ -1,8 +1,4 @@
-<div class="gmGame">
-    <div class="gmGame-Board" ng-style="{height:(6 * card_height)+'px'}">
-        <div class="gmGame-Card" ng-repeat="card in cards track by card.id"
-             ng-style="{top:(card.row * card_height)+'px',left:(card.col * card_width)+'px',width:card_width+'px',height:card_height+'px'}">
-            <div class="gmGame-Card-Cover"></div>
-        </div>
-    </div>
-</div>
+<gm-card ng-repeat="card in cards track by card.id"
+         data="card"
+         width="card_width"
+         height="card_height"></gm-card>

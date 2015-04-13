@@ -1,0 +1,55 @@
+@import "../../Config";
+
+gm-game {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.gmGame {
+  $phoneWidth: 768px;
+  $width: 350px;
+
+  @media (min-width: $phoneWidth + 1px) {
+    &-Players {
+      display: block;
+      position: absolute;
+      top: $navHeight + $spacer;
+      left: $spacer;
+      bottom: $spacer;
+      width: $width;
+
+      @include box-sizing(border-box);
+    }
+
+    &-Board {
+      display: block;
+      position: absolute;
+      top: $navHeight + $spacer;
+      left: $width + $spacer * 2;
+      right: $spacer;
+      bottom: $spacer;
+
+      @include box-sizing(border-box);
+    }
+  }
+
+  @media (max-width: $phoneWidth) {
+    &-Players {
+      display: none;
+    }
+    &-Board {
+      display: block;
+      position: absolute;
+      top: $navHeight;
+      left: 0;
+      right: 0;
+      bottom: 0;
+
+      @include box-sizing(border-box);
+    }
+  }
+}

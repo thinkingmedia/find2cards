@@ -7,12 +7,11 @@ namespace App\Controller;
  *
  * @property \App\Model\Table\GamesTable      $Games
  * @property \App\Model\Table\UsersGamesTable $UsersGames
- * @property \App\Model\Table\CardsTable      $Cards
  * @property \App\Model\Table\UsersGamesTable $Lobby
  */
 class GamesController extends AppController
 {
-    public $use = ['Games', 'UsersGames', 'Cards', 'Lobby' => 'UsersGames'];
+    public $use = ['Games', 'UsersGames', 'Lobby' => 'UsersGames'];
 
     /**
      * @param {int} $game_id
@@ -43,10 +42,21 @@ class GamesController extends AppController
         {
             $player->started = true;
             $this->UsersGames->save($player);
-            $this->Cards->create($this->user_id, $game_id, 6 * 4);
         }
 
         return $player;
+    }
+
+    private static function fisherYatesShuffle(&$items, $seed)
+    {
+        @mt_srand($seed);
+        for ($i = count($items) - 1; $i > 0; $i--)
+        {
+            $j = @mt_rand(0, $i);
+            $tmp = $items[$i];
+            $items[$i] = $items[$j];
+            $items[$j] = $tmp;
+        }
     }
 
     /**
@@ -59,13 +69,20 @@ class GamesController extends AppController
         $game = $this->_mark_game_started($game_id);
         $player = $this->_mark_player_started($game_id);
 
-        $cards = $this->Cards->query()
-                             ->where(['user_id' => $this->user_id, 'game_id' => $game_id])
-                             ->order(['`order`'])
-                             ->all();
+        $data = array_merge(range(1, 12), range(1, 12));
+        self::fisherYatesShuffle($data, $game->created->getTimestamp());
+
+        $cards = [];
+        for ($i = 0; $i < 24; $i++)
+        {
+            $cards[] = [
+                'id'=>$i,
+                'type'=>$data[$i]
+            ];
+        }
 
         $this->set('cards', $cards);
-        $this->set('game_id', $game_id);
+        $this->set('game_id', (int)$game_id);
     }
 
     /**

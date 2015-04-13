@@ -2,8 +2,9 @@
 // Please do not edit.
 goog.addDependency('../../../../src/gmMem/Controllers/_All.js', ['gmMem.Controllers.All'], ['gmMem.Controllers'], false);
 goog.addDependency('../../../../src/gmMem/Controllers/_Package.js', ['gmMem.Controllers'], ['gmMem'], false);
-goog.addDependency('../../../../src/gmMem/Directives/_All.js', ['gmMem.Directives.All'], ['gmMem.Directives', 'gmMem.Directives.gmGame', 'gmMem.Directives.gmLobby', 'gmMem.Directives.gmPlayer', 'gmMem.Directives.gmTimer'], false);
+goog.addDependency('../../../../src/gmMem/Directives/_All.js', ['gmMem.Directives.All'], ['gmMem.Directives', 'gmMem.Directives.gmCard', 'gmMem.Directives.gmGame', 'gmMem.Directives.gmLobby', 'gmMem.Directives.gmPlayer', 'gmMem.Directives.gmTimer'], false);
 goog.addDependency('../../../../src/gmMem/Directives/_Package.js', ['gmMem.Directives'], ['gmMem'], false);
+goog.addDependency('../../../../src/gmMem/Directives/gmCard/gmCard.js', ['gmMem.Directives.gmCard'], ['gmMem.Directives'], false);
 goog.addDependency('../../../../src/gmMem/Directives/gmGame/gmGame.js', ['gmMem.Directives.gmGame'], ['gmMem.Directives'], false);
 goog.addDependency('../../../../src/gmMem/Directives/gmLobby/gmLobby.js', ['gmMem.Directives.gmLobby'], ['gmMem.Directives'], false);
 goog.addDependency('../../../../src/gmMem/Directives/gmPlayer/gmPlayer.js', ['gmMem.Directives.gmPlayer'], ['gmMem.Directives'], false);

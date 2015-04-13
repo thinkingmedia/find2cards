@@ -1,0 +1,46 @@
+@mixin flippy($speed: 0.5s, $perspective: 500, $bgcolor: #fff) {
+  @include perspective($perspective);
+
+  .front, .back {
+    background-color: $bgcolor;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+
+    @include transition((all $speed ease-in-out));
+    @include backface-visibility(hidden);
+    @include transform-style(preserve-3d);
+  }
+
+  .front {
+    .no-csstransforms3d & {
+      opacity: 1;
+    }
+  }
+
+  .back {
+    @include rotateY(180deg);
+    .no-csstransforms3d & {
+      visibility: hidden;
+      opacity: 0;
+    }
+  }
+
+  &.flip {
+    .front {
+      @include rotateY(180deg);
+      .no-csstransforms3d & {
+        visibility: hidden;
+      }
+    }
+    .back {
+      @include rotateY(360deg);
+      .no-csstransforms3d & {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+  }
+}

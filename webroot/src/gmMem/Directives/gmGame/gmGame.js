@@ -15,6 +15,8 @@ goog.require('gmMem.Directives');
  *
  * @property {number} card_width
  * @property {number} card_height
+ * @property {number} rows
+ * @property {number} columns
  */
 
 /**
@@ -23,26 +25,40 @@ goog.require('gmMem.Directives');
  * @param {gmMem.Directives.gmGameScope} $scope
  * @param {ng.IHttpService} $http
  * @param {Array.<Object>} cards
+ * @param {ng.ITimeoutService} $timeout
  *
  * @constructor
  */
-gmMem.Directives.gmGameCtrl = function($scope, $http, cards)
+gmMem.Directives.gmGameCtrl = function($scope, $http, $timeout, cards)
 {
 	this._$scope = $scope;
 	this._$http = $http;
+	this._$timeout = $timeout;
 
 	this._$scope.ctrl = this;
 	this._$scope.state = 'loading';
 	this._$scope.players = [];
 	this._$scope.cards = cards;
 
+	this.flipped = [];
+};
+
+gmMem.Directives.gmGameCtrl.RESET = 'gmGame::RESET';
+
+/**
+ * Calculates what rows and columns each card belongs in.
+ *
+ * @param {number} columns
+ */
+gmMem.Directives.gmGameCtrl.prototype.arrange = function(columns)
+{
 	var row = 0;
 	var col = 0;
 	_.each(this._$scope.cards, function(card)
 	{
 		card.row = row;
 		card.col = col++;
-		if(col == 4)
+		if(col == columns)
 		{
 			row++;
 			col = 0;
@@ -67,6 +83,47 @@ gmMem.Directives.gmGameCtrl.prototype.update = function()
 };
 
 /**
+ * Adjusts the size of the cards to fit the width.
+ *
+ * @param {number} width
+ * @param {number} height
+ */
+gmMem.Directives.gmGameCtrl.prototype.resize = function(width, height)
+{
+	var landscape = width > height;
+	this._$scope.columns = landscape ? 6 : 4;
+	this._$scope.rows = landscape ? 4 : 6;
+	this._$scope.card_width = ~~(width / this._$scope.columns);
+	this._$scope.card_height = ~~(height / this._$scope.rows);
+	this.arrange(this._$scope.columns);
+};
+
+/**
+ * Called when a card is shown.
+ *
+ * @param {number} card_id
+ */
+gmMem.Directives.gmGameCtrl.prototype.shown = function(card_id)
+{
+	this.flipped.push(card_id);
+	if(this.flipped.length == 2)
+	{
+		this.match(this.flipped[0],this.flipped[1]);
+		var reset = this.flipped;
+		this._$timeout(function()
+					   {
+						   this._$scope.$broadcast(gmMem.Directives.gmGameCtrl.RESET,reset[0]);
+						   this._$scope.$broadcast(gmMem.Directives.gmGameCtrl.RESET,reset[1]);
+					   }.bind(this),1000);
+		this.flipped = [];
+	}
+};
+
+gmMem.Directives.gmGameCtrl.prototype.match = function(card_a, card_b)
+{
+};
+
+/**
  * @param {ng.IWindowService} $window
  * @param {ng.ITimeoutService} $timeout
  *
@@ -83,26 +140,18 @@ gmMem.Directives.gmGame = function($window, $timeout)
 	 */
 	function _link($scope, $el, $attr, ctrl)
 	{
-		function resize()
-		{
-			console.log('resized');
-			var $board = $($el).find(".gmGame-Board");
-			var width = $board.innerWidth();
-			$scope.card_width = ~~(width / 4);
-			$scope.card_height = $scope.card_width * 1.5;
-		}
-
 		$(window).bind('resize.gmGame', function()
 		{
-			$scope.$apply(resize);
+			$scope.$apply(function()
+						  {
+							  ctrl.resize($el.innerWidth(), $el.innerHeight());
+						  });
 		});
-
 		$scope.$on('$destroy', function()
 		{
 			$(window).unbind('resize.gmGame');
 		});
-
-		resize();
+		ctrl.resize($el.innerWidth(), $el.innerHeight());
 
 		function doUpdate()
 		{
@@ -128,6 +177,7 @@ gmMem.Directives.gmGame = function($window, $timeout)
 		controller:  [
 			'$scope',
 			'$http',
+			'$timeout',
 			'cards',
 			gmMem.Directives.gmGameCtrl
 		],

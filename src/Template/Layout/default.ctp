@@ -1,11 +1,12 @@
 <?php
 $scripts = [
+    '/bower/jquery/dist/jquery.js',
     '/bower/angular/angular.js',
     '/bower/angular-bootstrap/ui-bootstrap.js',
     '/bower/angular-bootstrap/ui-bootstrap-tpls.js',
-    '/bower/jquery/dist/jquery.js',
     '/bower/lodash/lodash.js',
     '/bower/moment/moment.js',
+    '/bower/modernizr/modernizr.js',
     '/bower/closure-library/closure/goog/base.js',
     '/js/deps.js',
     '/src/gmMem/_Package.js',

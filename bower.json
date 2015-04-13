@@ -24,7 +24,8 @@
     "closure-library": "git://github.com/google/closure-library.git",
     "fontawesome": "~4.3.0",
     "compass-mixins": "~1.0.2",
-    "moment": "~2.10.2"
+    "moment": "~2.10.2",
+    "modernizr": "~2.8.3"
   },
   "resolutions": {
     "angular": "~1.3.15"
